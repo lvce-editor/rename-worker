@@ -23,6 +23,7 @@ const getRenameChanges = (editor: any, result: any): readonly any[] => {
       start,
       end,
       inserted: [result.inserted],
+      // @ts-ignore
       deleted: TextDocument.getSelectionText(editor, selection),
       origin: EditOrigin.Rename,
     })
