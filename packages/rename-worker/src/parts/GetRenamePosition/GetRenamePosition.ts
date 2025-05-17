@@ -1,6 +1,6 @@
 import * as GetPositionAtCursor from '../GetPositionAtCursor/GetPositionAtCursor.ts'
 
-export const getRenamePosition = (editor: any) => {
+export const getRenamePosition = (editor: any): any => {
   const width = 300
   const height = 30
   const paddingTop = 10
