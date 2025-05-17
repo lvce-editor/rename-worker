@@ -23,5 +23,6 @@ export const loadContent = async (state: RenameState): Promise<RenameState> => {
     y: renameY,
     width,
     height,
+    focused: true,
   }
 }
