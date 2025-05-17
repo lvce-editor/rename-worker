@@ -8,4 +8,5 @@ export interface RenameState {
   readonly y: number
   readonly width: number
   readonly height: number
+  readonly version: number
 }
