@@ -1,3 +1,3 @@
-# Color picker worker
+# Rename worker
 
-Web Worker to manage the color picker in Lvce Editor.
+Web Worker to manage the Rename Widget in Lvce Editor.
