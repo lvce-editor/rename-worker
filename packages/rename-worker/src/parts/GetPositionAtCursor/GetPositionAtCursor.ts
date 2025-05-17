@@ -1,11 +1,7 @@
 import type { PositionAtCursor } from '../PositionAtCursor/PositionAtCursor.ts'
+import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 
-export const getPositionAtCursor = (editor: any): PositionAtCursor => {
-  // TODO ask editor worker
-  return {
-    x: 0,
-    y: 0,
-    rowIndex: 0,
-    columnIndex: 0,
-  }
+export const getPositionAtCursor = async (parentUid: number): Promise<PositionAtCursor> => {
+  const position = await EditorWorker.invoke('Editor.getPositionAtCursor', parentUid)
+  return position
 }
