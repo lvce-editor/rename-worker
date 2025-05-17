@@ -16,6 +16,7 @@ export const create = (): RenameWidget => {
       y: 0,
       width: 0,
       height: 0,
+      version: 0,
     },
     newState: {
       uid: completionUid,
@@ -27,6 +28,7 @@ export const create = (): RenameWidget => {
       y: 0,
       width: 0,
       height: 0,
+      version: 0,
     },
   }
   return renameWidget

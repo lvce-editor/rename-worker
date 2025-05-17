@@ -7,5 +7,6 @@ export const loadContent = (state: RenameState): RenameState => {
   // 3. show rename widget with bounds and focus it
   return {
     ...state,
+    version: 1,
   }
 }
