@@ -4,6 +4,7 @@ import * as Diff2 from '../Diff2/Diff2.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as HandleBlur from '../HandleBlur/HandleBlur.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
+import * as Render2 from '../Render2/Render2.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
 
 export const commandMap = {
@@ -14,4 +15,5 @@ export const commandMap = {
   'Rename.handleBlur': HandleBlur.handleBlur,
   'Rename.loadContent': LoadContent.loadContent,
   'Rename.terminate': Terminate.terminate,
+  'Rename.render2': Render2.render2,
 }
