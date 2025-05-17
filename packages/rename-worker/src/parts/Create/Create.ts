@@ -13,6 +13,7 @@ export const create = (uid: number, x: number, y: number, width: number, height:
     x,
     y,
     version: 0,
+    parentUid,
   }
   RenameStates.set(uid, state, state)
   return state

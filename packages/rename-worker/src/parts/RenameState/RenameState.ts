@@ -9,4 +9,5 @@ export interface RenameState {
   readonly width: number
   readonly height: number
   readonly version: number
+  readonly parentUid: number
 }
