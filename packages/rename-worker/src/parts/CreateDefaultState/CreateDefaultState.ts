@@ -12,5 +12,6 @@ export const createDefaultState = (): RenameState => {
     x: 0,
     y: 0,
     version: 0,
+    parentUid: 1,
   }
 }
