@@ -3,7 +3,7 @@ import * as EditorCommandGetWordAt from '../EditorCommandGetWordAt/EditorCommand
 import * as GetPositionAtCursor from '../GetPositionAtCursor/GetPositionAtCursor.ts'
 import * as GetRenamePosition from '../GetRenamePosition/GetRenamePosition.ts'
 
-export const loadContent = async (state: RenameState): Promise<Promise<RenameState>> => {
+export const loadContent = async (state: RenameState): Promise<RenameState> => {
   const { parentUid } = state
   const { rowIndex, columnIndex, x, y } = await GetPositionAtCursor.getPositionAtCursor(parentUid)
   const word = await EditorCommandGetWordAt.getWordAt(parentUid, rowIndex, columnIndex)
