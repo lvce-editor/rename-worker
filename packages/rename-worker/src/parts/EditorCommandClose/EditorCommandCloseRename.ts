@@ -7,6 +7,7 @@ const isRenameWidget = (widget: any): boolean => {
 }
 
 export const closeRename = (editor: any): Promise<any> => {
+  // TODO ask editor worker to remove widget
   const { widgets } = editor
   const renameWidgetIndex = widgets.findIndex(isRenameWidget)
   if (renameWidgetIndex === -1) {
