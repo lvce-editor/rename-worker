@@ -2,9 +2,11 @@ import { jest, test, expect } from '@jest/globals'
 import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { MockRpc } from '@lvce-editor/rpc'
 
 test('loadContent - no word at cursor', async () => {
-  const mockRpc = {
+  const mockRpc = await MockRpc.create({
+    commandMap: {},
     invoke: (method: string) => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
         return Promise.resolve(null)
@@ -14,10 +16,7 @@ test('loadContent - no word at cursor', async () => {
       }
       throw new Error(`unexpected method ${method}`)
     },
-    send: () => {},
-    invokeAndTransfer: () => Promise.resolve(),
-    dispose: () => Promise.resolve(),
-  }
+  })
   RendererWorker.set(mockRpc)
 
   const state = createDefaultState()
@@ -26,7 +25,8 @@ test('loadContent - no word at cursor', async () => {
 })
 
 test('loadContent - with word at cursor', async () => {
-  const mockRpc = {
+  const mockRpc = await MockRpc.create({
+    commandMap: {},
     invoke: (method: string) => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
         return Promise.resolve('test')
@@ -36,10 +36,7 @@ test('loadContent - with word at cursor', async () => {
       }
       throw new Error(`unexpected method ${method}`)
     },
-    send: () => {},
-    invokeAndTransfer: () => Promise.resolve(),
-    dispose: () => Promise.resolve(),
-  }
+  })
   RendererWorker.set(mockRpc)
 
   const state = createDefaultState()
