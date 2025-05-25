@@ -13,5 +13,7 @@ export const createDefaultState = (): RenameState => {
     y: 0,
     version: 0,
     parentUid: 1,
+    selectionEnd: 0,
+    selectionStart: 0,
   }
 }

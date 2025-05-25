@@ -14,6 +14,8 @@ export const create = (uid: number, x: number, y: number, width: number, height:
     y,
     version: 0,
     parentUid,
+    selectionEnd: 0,
+    selectionStart: 0,
   }
   RenameStates.set(uid, state, state)
   return state
