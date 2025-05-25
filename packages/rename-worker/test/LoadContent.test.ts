@@ -8,7 +8,7 @@ test('loadContent - no word at cursor', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'EditorCommandGetWordAt.getWordAt') {
+      if (method === 'Editor.getWordAt2') {
         return null
       }
       if (method === 'Editor.getPositionAtCursor') {
@@ -28,7 +28,7 @@ test('loadContent - with word at cursor', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'EditorCommandGetWordAt.getWordAt') {
+      if (method === 'Editor.getWordAt2') {
         return 'test'
       }
       if (method === 'Editor.getPositionAtCursor') {
@@ -46,9 +46,9 @@ test('loadContent - with word at cursor', async () => {
     oldValue: 'test',
     version: 1,
     x: 100,
-    y: 100,
-    width: 0,
-    height: 0,
+    y: 110,
+    width: 300,
+    height: 80,
     focused: true,
     selectionEnd: 4,
   })
