@@ -13,6 +13,7 @@ export const modules = [
   DiffEventListeners.isEqual,
   DiffValue.isEqual,
   DiffSelection.isEqual,
+  DiffFocus.isEqual,
 ]
 
 export const numbers = [
@@ -22,4 +23,5 @@ export const numbers = [
   DiffType.RenderEventListeners,
   DiffType.RenderValue,
   DiffType.RenderSelection,
+  DiffType.RenderFocusContext,
 ]
