@@ -16,13 +16,16 @@ export const loadContent = async (state: RenameState): Promise<RenameState> => {
   // 1. query position at cursor
   // 2. the bounds for position
   // 3. show rename widget with bounds and focus it
+  const selectionEnd = word.length
   return {
     ...state,
+    oldValue: word,
     version: 1,
     x: renameX,
     y: renameY,
     width,
     height,
     focused: true,
+    selectionEnd,
   }
 }
