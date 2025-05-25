@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { renderBounds } from '../src/parts/RenderBounds/RenderBounds.js'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.js'
+import { renderBounds } from '../src/parts/RenderBounds/RenderBounds.js'
 import * as RenderMethod from '../src/parts/RenderMethod/RenderMethod.js'
 
 test('renderBounds returns correct command', () => {

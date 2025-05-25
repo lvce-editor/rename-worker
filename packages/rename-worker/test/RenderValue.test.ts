@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
-import { renderValue } from '../src/parts/RenderValue/RenderValue.js'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.js'
 import * as InputName from '../src/parts/InputName/InputName.js'
+import { renderValue } from '../src/parts/RenderValue/RenderValue.js'
 
 test('renderValue returns correct command', () => {
   const oldState = createDefaultState()
