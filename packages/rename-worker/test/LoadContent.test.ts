@@ -1,18 +1,18 @@
-import { jest, test, expect } from '@jest/globals'
-import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadContent - no word at cursor', async () => {
-  const mockRpc = await MockRpc.create({
+  const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
-        return Promise.resolve(null)
+        return null
       }
       if (method === 'GetPositionAtCursor.getPositionAtCursor') {
-        return Promise.resolve({ rowIndex: 0, columnIndex: 0, x: 0, y: 0 })
+        return { rowIndex: 0, columnIndex: 0, x: 0, y: 0 }
       }
       throw new Error(`unexpected method ${method}`)
     },
@@ -25,14 +25,14 @@ test('loadContent - no word at cursor', async () => {
 })
 
 test('loadContent - with word at cursor', async () => {
-  const mockRpc = await MockRpc.create({
+  const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
-        return Promise.resolve('test')
+        return 'test'
       }
       if (method === 'GetPositionAtCursor.getPositionAtCursor') {
-        return Promise.resolve({ rowIndex: 0, columnIndex: 0, x: 100, y: 100 })
+        return { rowIndex: 0, columnIndex: 0, x: 100, y: 100 }
       }
       throw new Error(`unexpected method ${method}`)
     },
