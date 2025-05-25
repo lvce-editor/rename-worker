@@ -17,4 +17,3 @@ export const getRenameVirtualDom = (state: RenameState): readonly VirtualDomNode
     ...GetRenameDetailsVirtualDom.getRenameDetailsVirtualDom(),
   ]
 }
-;``
