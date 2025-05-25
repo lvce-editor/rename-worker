@@ -11,7 +11,7 @@ test('loadContent - no word at cursor', async () => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
         return null
       }
-      if (method === 'GetPositionAtCursor.getPositionAtCursor') {
+      if (method === 'Editor.getPositionAtCursor') {
         return { rowIndex: 0, columnIndex: 0, x: 0, y: 0 }
       }
       throw new Error(`unexpected method ${method}`)
@@ -31,7 +31,7 @@ test('loadContent - with word at cursor', async () => {
       if (method === 'EditorCommandGetWordAt.getWordAt') {
         return 'test'
       }
-      if (method === 'GetPositionAtCursor.getPositionAtCursor') {
+      if (method === 'Editor.getPositionAtCursor') {
         return { rowIndex: 0, columnIndex: 0, x: 100, y: 100 }
       }
       throw new Error(`unexpected method ${method}`)
