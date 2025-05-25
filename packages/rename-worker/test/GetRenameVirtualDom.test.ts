@@ -12,7 +12,7 @@ test('getRenameVirtualDom', () => {
   }
   expect(GetRenameVirtualDom.getRenameVirtualDom(state)).toEqual([
     {
-      childCount: 1,
+      childCount: 2,
       className: 'Viewlet EditorRename',
       type: 4,
     },
@@ -22,6 +22,16 @@ test('getRenameVirtualDom', () => {
       type: 6,
       onBlur: 'handleBlur',
       name: 'Rename',
+    },
+    {
+      childCount: 1,
+      className: 'RenameDetails',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Press Enter to Rename',
+      type: 12,
     },
   ])
 })
