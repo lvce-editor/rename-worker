@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
-import { isEqual } from '../src/parts/DiffBounds/DiffBounds.js'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.js'
 import type { RenameState } from '../src/parts/RenameState/RenameState.js'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.js'
+import { isEqual } from '../src/parts/DiffBounds/DiffBounds.js'
 
 test('isEqual returns true when bounds are equal', () => {
   const state1: RenameState = createDefaultState()
