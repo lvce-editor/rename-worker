@@ -19,6 +19,6 @@ export const commandMap = {
   'Rename.handleBlur': RenameStates.wrapCommand(HandleBlur.handleBlur),
   'Rename.loadContent': RenameStates.wrapCommand(LoadContent.loadContent),
   'Rename.render2': Render2.render2,
-  'Rename.close': Close.close,
+  'Rename.close': RenameStates.wrapCommand(Close.close),
   'Rename.terminate': Terminate.terminate,
 }
