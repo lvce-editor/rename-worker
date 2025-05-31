@@ -1,4 +1,5 @@
 import * as Accept from '../Accept/Accept.ts'
+import * as Close from '../Close/Close.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
@@ -18,5 +19,6 @@ export const commandMap = {
   'Rename.handleBlur': RenameStates.wrapCommand(HandleBlur.handleBlur),
   'Rename.loadContent': RenameStates.wrapCommand(LoadContent.loadContent),
   'Rename.render2': Render2.render2,
+  'Rename.close': Close.close,
   'Rename.terminate': Terminate.terminate,
 }
