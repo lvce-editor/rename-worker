@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
+import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 
 test('loadContent - no word at cursor', async () => {
   const mockRpc = MockRpc.create({
