@@ -1,5 +1,5 @@
-import * as ColorPickerStates from '../ColorPickerStates/ColorPickerStates.ts'
+import * as RenameStates from '../RenameStates/RenameStates.ts'
 
 export const dispose = (uid: number): void => {
-  ColorPickerStates.dispose(uid)
+  RenameStates.dispose(uid)
 }
