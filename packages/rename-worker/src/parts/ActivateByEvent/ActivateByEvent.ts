@@ -1,6 +1,6 @@
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 
-// TODO add tests for this
 export const activateByEvent = async (event: any): Promise<void> => {
-  await RendererWorker.invoke('ExtensionHostManagement.activateByEvent', event)
+  // @ts-ignore
+  await EditorWorker.invoke('ExtensionHostManagement.activateByEvent', event)
 }
