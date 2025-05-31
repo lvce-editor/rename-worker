@@ -1,7 +1,9 @@
 import type { RenameState } from '../RenameState/RenameState.ts'
+import * as Assert from '../Assert/Assert.ts'
 import * as RenameStates from '../RenameStates/RenameStates.ts'
 
 export const create = (uid: number, x: number, y: number, width: number, height: number, parentUid: number): RenameState => {
+  Assert.number(uid)
   const state: RenameState = {
     uid,
     height,
