@@ -1,10 +1,10 @@
 import * as ActivateByEvent from '../ActivateByEvent/ActivateByEvent.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import * as EditorWorker from '../EditorWorker/EditorWorker.ts'
 
 export const execute = async ({ editor, args, event, method, noProviderFoundMessage, noProviderFoundResult = undefined }: any): Promise<any> => {
   const fullEvent = `${event}:${editor.languageId}`
   await ActivateByEvent.activateByEvent(fullEvent)
   // @ts-ignore
-  const result = await RendererWorker.invoke('ExtensionHostWorker.invoke', method, editor.uid, ...args)
+  const result = await EditorWorker.invoke('ExtensionHostWorker.invoke', method, editor.uid, ...args)
   return result
 }
