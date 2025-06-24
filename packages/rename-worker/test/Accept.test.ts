@@ -16,7 +16,7 @@ test('accept returns editor when no rename state exists', async () => {
 test('accept removes rename widget and returns updated editor', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         return { edits: [{ offset: 10, deleted: 5 }] }
       }
@@ -52,7 +52,7 @@ test('accept removes rename widget and returns updated editor', async () => {
 test('accept calls extension host rename provider with correct parameters', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         return { edits: [{ offset: 15, deleted: 3 }] }
       }
@@ -80,7 +80,7 @@ test('accept calls extension host rename provider with correct parameters', asyn
 test('accept handles empty rename result', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         return { edits: [] }
       }
@@ -108,7 +108,7 @@ test('accept handles empty rename result', async () => {
 test('accept handles extension host error gracefully', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         throw new Error('Extension host error')
       }
@@ -133,7 +133,7 @@ test('accept handles extension host error gracefully', async () => {
 test('accept preserves other editor properties', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         return { edits: [{ offset: 10, deleted: 2 }] }
       }
