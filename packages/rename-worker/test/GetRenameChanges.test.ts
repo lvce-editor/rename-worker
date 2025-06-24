@@ -7,7 +7,7 @@ test('getRenameChanges - no edits', () => {
   expect(result).toEqual([])
 })
 
-test.skip('getRenameChanges - with edits', () => {
+test('getRenameChanges - with edits', () => {
   const editor = { lines: ['test line'] }
   const result = getRenameChanges(editor, { inserted: 'new', edits: [{ offset: 0, deleted: 3 }] })
   expect(Array.isArray(result)).toBe(true)
