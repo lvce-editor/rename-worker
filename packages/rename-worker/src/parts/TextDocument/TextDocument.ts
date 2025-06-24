@@ -47,7 +47,7 @@ export const getSelectionText = (textDocument: any, selection: any): string => {
   if (start.rowIndex === end.rowIndex) {
     // Same line selection
     const line = lines[start.rowIndex] || ''
-    return line.substring(start.columnIndex, end.columnIndex)
+    return line.slice(start.columnIndex, end.columnIndex)
   } else {
     // Multi-line selection
     let result = ''
