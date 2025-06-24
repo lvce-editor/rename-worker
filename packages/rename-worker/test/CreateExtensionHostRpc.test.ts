@@ -30,3 +30,17 @@ test('createExtensionHostRpc works with mock rpc', async () => {
   expect(rpc).toBeDefined()
   await rpc.dispose()
 })
+
+test('createExtensionHostRpc throws error when mock rpc throws', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      throw new Error('Mock invoke error')
+    },
+    invokeAndTransfer: (method: string) => {
+      throw new Error('Mock invokeAndTransfer error')
+    },
+  })
+  EditorWorker.set(mockRpc)
+  await expect(CreateExtensionHostRpc.createExtensionHostRpc()).rejects.toThrow('Failed to create extension host rpc')
+})
