@@ -54,7 +54,7 @@ export const getSelectionText = (textDocument: any, selection: any): string => {
 
     // First line
     const firstLine = lines[start.rowIndex] || ''
-    result += firstLine.substring(start.columnIndex)
+    result += firstLine.slice(Math.max(0, start.columnIndex))
 
     // Middle lines
     for (let i = start.rowIndex + 1; i < end.rowIndex; i++) {
@@ -64,7 +64,7 @@ export const getSelectionText = (textDocument: any, selection: any): string => {
     // Last line
     if (end.rowIndex < lines.length) {
       const lastLine = lines[end.rowIndex] || ''
-      result += '\n' + lastLine.substring(0, end.columnIndex)
+      result += '\n' + lastLine.slice(0, Math.max(0, end.columnIndex))
     }
 
     return result
