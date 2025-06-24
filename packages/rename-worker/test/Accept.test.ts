@@ -1,13 +1,8 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as Accept from '../src/parts/Accept/Accept.js'
-import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.js'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
 import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.js'
-import * as GetRenameChanges from '../src/parts/GetRenameChanges/GetRenameChanges.js'
-import * as GetRenameState from '../src/parts/GetRenameState/GetRenameState.js'
-import * as RemoveEditorWidget from '../src/parts/RemoveEditorWidget/RemoveEditorWidget.js'
-import * as TextDocument from '../src/parts/TextDocument/TextDocument.js'
 
 test('accept returns editor when no rename state exists', async () => {
   const editor = {
