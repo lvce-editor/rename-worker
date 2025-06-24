@@ -26,18 +26,27 @@ test('applyRender returns empty array for empty diffResult', () => {
   expect(result).toEqual([])
 })
 
-test('applyRender throws for unknown diff type', () => {
+test('applyRender returns array with one command for single diffResult', () => {
   const oldState = makeRenameState(1)
   const newState = makeRenameState(2)
-  const diffResult: number[] = [999]
-  expect(() => ApplyRender.applyRender(oldState, newState, diffResult)).toThrow('unknown renderer')
-})
-
-test('applyRender calls a real renderer for RenderContent', () => {
-  const oldState = makeRenameState(1)
-  const newState = makeRenameState(2)
-  const diffResult: number[] = [DiffType.RenderContent]
+  const diffResult = [DiffType.RenderContent]
   const result = ApplyRender.applyRender(oldState, newState, diffResult)
   expect(Array.isArray(result)).toBe(true)
   expect(result.length).toBe(1)
+})
+
+test('applyRender returns array with multiple commands for multiple diffResult', () => {
+  const oldState = makeRenameState(1)
+  const newState = makeRenameState(2)
+  const diffResult = [DiffType.RenderContent, DiffType.RenderBounds]
+  const result = ApplyRender.applyRender(oldState, newState, diffResult)
+  expect(Array.isArray(result)).toBe(true)
+  expect(result.length).toBe(2)
+})
+
+test('applyRender throws for unknown diff type', () => {
+  const oldState = makeRenameState(1)
+  const newState = makeRenameState(2)
+  const diffResult = [999]
+  expect(() => ApplyRender.applyRender(oldState, newState, diffResult)).toThrow('unknown renderer')
 })
