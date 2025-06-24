@@ -1,7 +1,7 @@
 import { test, expect, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import { sendMessagePortToExtensionHostWorker } from '../src/parts/SendMessagePortToExtensionHostWorker/SendMessagePortToExtensionHostWorker.ts'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
+import { sendMessagePortToExtensionHostWorker } from '../src/parts/SendMessagePortToExtensionHostWorker/SendMessagePortToExtensionHostWorker.ts'
 
 test('sendMessagePortToExtensionHostWorker - calls invokeAndTransfer with correct parameters', async () => {
   const mockInvokeAndTransferFn = jest.fn()
