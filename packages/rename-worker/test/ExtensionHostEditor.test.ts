@@ -7,7 +7,7 @@ import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/Extension
 test('execute activates event and calls ExtensionHostWorker.invoke', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostManagement.activateByEvent') {
         return undefined
       }
