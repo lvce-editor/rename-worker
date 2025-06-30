@@ -8,7 +8,7 @@ test('executeRenameProvider calls ExtensionHostEditor.execute with correct args'
   let lastArgs: any = null
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionHostManagement.activateByEvent') {
         return undefined
       }
