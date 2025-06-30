@@ -6,7 +6,7 @@ import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/Extension
 test('invoke calls EditorWorker.invoke with correct args', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...params: any[]) => {
+    invoke: (method: string, ...params: readonly any[]) => {
       if (method === 'ExtensionHostWorker.invoke') {
         return { method, params }
       }
