@@ -13,6 +13,6 @@ test('close', async () => {
 
   const state = { parentUid: 1 } as any
   const result = await close(state)
-  expect(mockInvokeFn).toHaveBeenCalledWith('Editor.closeWidget2', 1, expect.anything(), 'Rename')
+  expect(mockInvokeFn).toHaveBeenCalledWith('Editor.closeWidget2', 1, expect.anything(), 'Rename', 0)
   expect(result).toBe(state)
 })
