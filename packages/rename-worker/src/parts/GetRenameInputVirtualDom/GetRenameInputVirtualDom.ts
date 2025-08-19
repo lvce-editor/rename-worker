@@ -12,6 +12,7 @@ export const getRenameInputVirtualDom = (): readonly VirtualDomNode[] => {
       className: MergeClassNames.mergeClassNames(ClassNames.InputBox, ClassNames.RenameInputBox),
       childCount: 0,
       onBlur: DomEventListenerFunctions.HandleBlur,
+      onInput: DomEventListenerFunctions.HandleInput,
       name: InputName.Rename,
     },
   ]
