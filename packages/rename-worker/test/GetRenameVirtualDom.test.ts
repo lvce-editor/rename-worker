@@ -1,12 +1,11 @@
 import { expect, test } from '@jest/globals'
 import type { RenameState } from '../src/parts/RenameState/RenameState.ts'
 import * as GetRenameVirtualDom from '../src/parts/GetRenameVirtualDom/GetRenameVirtualDom.ts'
-import * as RenameWidgetFactory from '../src/parts/RenameWidgetFactory/RenameWidgetFactory.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
 test('getRenameVirtualDom', () => {
-  const widget = RenameWidgetFactory.create()
   const state: RenameState = {
-    ...widget.newState,
+    ...createDefaultState(),
     oldValue: 'a',
     newValue: 'b',
   }
