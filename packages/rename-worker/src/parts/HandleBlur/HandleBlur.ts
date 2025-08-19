@@ -1,5 +1,6 @@
-import * as EditorCommandCloseRename from '../EditorCommandClose/EditorCommandCloseRename.ts'
+import type { RenameState } from '../RenameState/RenameState.ts'
 
-export const handleBlur = (editor: any): any => {
-  return EditorCommandCloseRename.closeRename(editor)
+export const handleBlur = async (state: RenameState): Promise<RenameState> => {
+  // TODO ask editor worker to close widget
+  return state
 }
