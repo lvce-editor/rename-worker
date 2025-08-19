@@ -22,7 +22,8 @@
     "noUncheckedSideEffectImports": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
-    "noUncheckedIndexedAccess": false
+    "noUncheckedIndexedAccess": false,
+    "erasableSyntaxOnly": true
   },
   "include": ["src", "test"]
 }
