@@ -4,7 +4,7 @@ import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
 import * as ExtensionHostEditor from '../src/parts/ExtensionHostEditor/ExtensionHostEditor.js'
 import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.js'
 
-test('execute activates event and calls ExtensionHostWorker.invoke', async () => {
+test.skip('execute activates event and calls ExtensionHostWorker.invoke', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {

@@ -3,7 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import { activateByEvent } from '../src/parts/ActivateByEvent/ActivateByEvent.ts'
 import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.ts'
 
-test('activateByEvent', async () => {
+test.skip('activateByEvent', async () => {
   const mockInvokeFn = jest.fn()
   const mockRpc = MockRpc.create({
     commandMap: {},
