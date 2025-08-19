@@ -21,6 +21,7 @@ test('getRenameVirtualDom', () => {
       className: 'InputBox RenameInputBox',
       type: 6,
       onBlur: 'handleBlur',
+      onInput: 'handleInput',
       name: 'Rename',
     },
     {
