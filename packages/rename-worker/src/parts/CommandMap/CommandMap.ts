@@ -13,14 +13,14 @@ import * as RenameStates from '../RenameStates/RenameStates.ts'
 import * as Render2 from '../Render2/Render2.ts'
 
 export const commandMap = {
-  'Rename.accept': Accept.accept,
+  'Rename.accept': RenameStates.wrapCommand(Accept.accept),
   'Rename.close': RenameStates.wrapCommand(Close.close),
   'Rename.create': Create.create,
   'Rename.diff2': Diff2.diff2,
   'Rename.dispose': Dispose.dispose,
   'Rename.getCommandIds': GetCommandIds.getCommandIds,
   'Rename.handleBlur': RenameStates.wrapCommand(HandleBlur.handleBlur),
-  'Rename.handleInput': HandleInput.handleInput,
+  'Rename.handleInput': RenameStates.wrapCommand(HandleInput.handleInput),
   'Rename.initialize': Initialize.initialize,
   'Rename.loadContent': RenameStates.wrapCommand(LoadContent.loadContent),
   'Rename.render2': Render2.render2,
