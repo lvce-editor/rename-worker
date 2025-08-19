@@ -12,4 +12,5 @@ export interface RenameState {
   readonly parentUid: number
   readonly selectionStart: number
   readonly selectionEnd: number
+  readonly editorLanguageId: string
 }
