@@ -6,7 +6,7 @@ const combineResults = (results: any): readonly any[] => {
   return results[0] ?? []
 }
 
-export const executeRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number, newName: string): Promise<void> => {
+export const executeRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number, newName: string): Promise<any> => {
   return ExtensionHostEditor.execute({
     editorUid: editorUid,
     editorLanguageId,
