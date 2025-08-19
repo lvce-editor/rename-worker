@@ -13,20 +13,21 @@ export const create = (
 ): RenameState => {
   Assert.number(uid)
   const state: RenameState = {
-    uid,
-    height,
+    editorLanguageId,
     focused: false,
     focusedIndex: 0,
+    height,
+    inputSource: 0,
     newValue: '',
     oldValue: '',
-    width,
-    x,
-    y,
-    version: 0,
     parentUid,
     selectionEnd: 0,
     selectionStart: 0,
-    editorLanguageId,
+    uid,
+    version: 0,
+    width,
+    x,
+    y,
   }
   RenameStates.set(uid, state, state)
   return state
