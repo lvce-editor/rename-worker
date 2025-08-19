@@ -9,6 +9,7 @@ test('renderValue returns correct command', () => {
     ...createDefaultState(),
     uid: 123,
     oldValue: 'test-value',
+    newValue: 'test-value',
   }
 
   const result = renderValue(oldState, newState)
