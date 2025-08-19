@@ -1,16 +1,17 @@
 export interface RenameState {
-  readonly uid: number
-  readonly focusedIndex: number
+  readonly editorLanguageId: string
   readonly focused: boolean
-  readonly oldValue: string
+  readonly focusedIndex: number
+  readonly height: number
+  readonly inputSource: number
   readonly newValue: string
+  readonly oldValue: string
+  readonly parentUid: number
+  readonly selectionEnd: number
+  readonly selectionStart: number
+  readonly uid: number
+  readonly version: number
+  readonly width: number
   readonly x: number
   readonly y: number
-  readonly width: number
-  readonly height: number
-  readonly version: number
-  readonly parentUid: number
-  readonly selectionStart: number
-  readonly selectionEnd: number
-  readonly editorLanguageId: string
 }
