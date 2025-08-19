@@ -15,5 +15,6 @@ export const createDefaultState = (): RenameState => {
     parentUid: 1,
     selectionEnd: 0,
     selectionStart: 0,
+    editorLanguageId: '',
   }
 }
