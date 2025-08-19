@@ -26,6 +26,7 @@ test.skip('executeRenameProvider calls ExtensionHostEditor.execute with correct 
   const editor = { languageId: 'js' }
   const offset = 42
   const newName = 'fooBar'
+  // @ts-ignore
   const result = await ExtensionHostRename.executeRenameProvider(editor, offset, newName)
   expect(result).toBe('executed')
   expect(lastArgs.method).toBeDefined()
