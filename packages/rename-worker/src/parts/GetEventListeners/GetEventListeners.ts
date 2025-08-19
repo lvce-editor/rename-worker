@@ -1,15 +1,15 @@
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
-export const getEventListeners = (uid: number, widgetId: number): readonly DomEventListener[] => {
+export const getEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleBlur,
-      params: ['executeWidgetCommand', 'Rename', 'Rename.handleBlur', uid, widgetId],
+      params: ['EditorRename.handleBlur'],
     },
     {
       name: DomEventListenerFunctions.HandleInput,
-      params: ['executeWidgetCommand', 'Rename', 'Rename.handleInput', uid, widgetId, 'event.target.value'],
+      params: ['EditorRename.handleInput', 'event.target.value'],
     },
   ]
 }
