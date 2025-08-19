@@ -7,5 +7,9 @@ export const getEventListeners = (uid: number, widgetId: number): readonly DomEv
       name: DomEventListenerFunctions.HandleBlur,
       params: ['executeWidgetCommand', 'Rename', 'Rename.handleBlur', uid, widgetId],
     },
+    {
+      name: DomEventListenerFunctions.HandleInput,
+      params: ['executeWidgetCommand', 'Rename', 'Rename.handleInput', uid, widgetId, 'event.target.value'],
+    },
   ]
 }
