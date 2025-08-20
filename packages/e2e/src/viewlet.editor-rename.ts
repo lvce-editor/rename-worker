@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename'
 
-export const skip = true
+// export const skip = true
 
 export const test: Test = async ({ FileSystem, Workspace, Main, Editor, Locator, expect, FindWidget }) => {
   // arrange
@@ -22,6 +22,8 @@ export const test: Test = async ({ FileSystem, Workspace, Main, Editor, Locator,
   // assert
   const renameWidget = Locator('.EditorRename')
   await expect(renameWidget).toBeVisible()
+  await expect(renameWidget).toHaveCSS('top', '85px')
+  await expect(renameWidget).toHaveCSS('left', '45px')
   const renameInput = Locator('.RenameInputBox')
   await expect(renameInput).toBeVisible()
   await expect(renameInput).toBeFocused()
