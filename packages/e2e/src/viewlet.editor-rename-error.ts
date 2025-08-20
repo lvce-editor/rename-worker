@@ -2,19 +2,19 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename-error'
 
-export const skip = true
-
-export const test: Test = async ({ FileSystem, Workspace, Main, Editor, Locator, expect, FindWidget }) => {
+export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor, Locator, expect, FindWidget }) => {
   // arrange
+  const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-error')
+  await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.js`,
+    `${tmpDir}/file.xyz`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.js`)
-  await Editor.setCursor(0, 5)
+  await Main.openUri(`${tmpDir}/file.xyz`)
+  await Editor.setCursor(0, 4)
 
   await Editor.openRename()
   const renameWidget = Locator('.EditorRename')
