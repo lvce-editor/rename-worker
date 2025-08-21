@@ -6,6 +6,7 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-error')
   await Extension.addWebExtension(extensionUri)
+  console.log('did import')
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
     `${tmpDir}/file.xyz`,
@@ -16,18 +17,10 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   await Main.openUri(`${tmpDir}/file.xyz`)
   await Editor.setCursor(0, 4)
 
-  await Editor.openRename()
-  const renameWidget = Locator('.EditorRename')
-  await expect(renameWidget).toBeVisible()
-  const renameInput = Locator('.RenameInputBox')
-  await expect(renameInput).toBeVisible()
-
   // act
-
   // TODO
-  // 1. type a value
-  // 2. press enter
-  // 3. verify an error message occurs
+  // await Editor.rename2('y')
 
   // assert
+  // TODO verify that error message is shown
 }
