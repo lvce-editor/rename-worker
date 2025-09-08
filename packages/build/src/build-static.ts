@@ -14,7 +14,7 @@ await sharedProcess.exportStatic({
   root,
   extensionPath: '',
 })
-
+// TODO
 // await cp(
 //   join(root, '.tmp', 'dist', 'dist', 'iframeWorkerMain.js'),
 //   join(root, 'dist', commitHash, 'packages', 'iframe-worker', 'dist', 'iframeWorkerMain.js'),
