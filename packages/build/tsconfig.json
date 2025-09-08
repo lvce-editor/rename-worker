@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "lib": ["esnext"],
-    "checkJs": true,
     "target": "esnext",
     "types": ["node"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-    "noEmit": false,
+    "noEmit": true,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
@@ -18,7 +17,8 @@
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["src", "test"],
   "exclude": ["dist", "node_modules"]
