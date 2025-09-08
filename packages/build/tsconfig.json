@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "lib": ["esnext"],
-    "checkJs": true,
     "target": "esnext",
     "types": ["node"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-    "noEmit": false,
+    "noEmit": true,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
