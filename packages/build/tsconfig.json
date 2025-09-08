@@ -18,7 +18,8 @@
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["src", "test"],
   "exclude": ["dist", "node_modules"]

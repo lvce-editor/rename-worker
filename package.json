@@ -6,7 +6,7 @@
   "type": "module",
   "main": "",
   "scripts": {
-    "build": "cd packages/build && npm run build && cd ../.. && node packages/build/dist/build.js",
+    "build": "node packages/build/src/build.ts",
     "build:static": "node packages/build/dist/build-static.js",
     "build:watch": "./packages/build/node_modules/.bin/esbuild --format=esm --bundle --external:node:buffer --external:electron --external:ws --external:node:worker_threads --watch packages/rename-worker/src/renameWorkerMain.ts --outfile=.tmp/dist/dist/renameWorkerMain.js",
     "dev": "node packages/build/dist/dev.js",
