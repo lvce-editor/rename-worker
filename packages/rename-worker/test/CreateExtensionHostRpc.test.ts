@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import * as CreateExtensionHostRpc from '../src/parts/CreateExtensionHostRpc/CreateExtensionHostRpc.ts'
 import { EditorWorker } from '@lvce-editor/rpc-registry'
+import * as CreateExtensionHostRpc from '../src/parts/CreateExtensionHostRpc/CreateExtensionHostRpc.ts'
 
 test('createExtensionHostRpc works with mock rpc', async () => {
   const mockRpc = EditorWorker.registerMockRpc({

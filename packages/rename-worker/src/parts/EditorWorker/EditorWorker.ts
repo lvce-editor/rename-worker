@@ -1,4 +1,3 @@
-import { MockRpc } from '@lvce-editor/rpc'
 import { EditorWorker } from '@lvce-editor/rpc-registry'
 
 export const {
@@ -11,7 +10,4 @@ export const {
   closeWidget,
   getWordAt,
   getPositionAtCursor,
-  registerMockRpc,
 } = EditorWorker
-
-export { MockRpc }

@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { close } from '../src/parts/Close/Close.ts'
 import { EditorWorker } from '@lvce-editor/rpc-registry'
+import { close } from '../src/parts/Close/Close.ts'
 
 test('close', async () => {
   const mockRpc = EditorWorker.registerMockRpc({

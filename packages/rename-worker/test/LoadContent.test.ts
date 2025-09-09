@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import { EditorWorker } from '@lvce-editor/rpc-registry'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
-import { EditorWorker } from '@lvce-editor/rpc-registry'
 
 test('loadContent - no word at cursor', async () => {
   EditorWorker.registerMockRpc({
