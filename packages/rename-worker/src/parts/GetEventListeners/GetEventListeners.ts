@@ -1,3 +1,4 @@
+import { EventExpression } from '@lvce-editor/constants'
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
@@ -9,7 +10,7 @@ export const getEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleInput,
-      params: ['EditorRename.handleInput', 'event.target.value'],
+      params: ['EditorRename.handleInput', EventExpression.TargetValue],
     },
   ]
 }
