@@ -7,8 +7,8 @@ test('getRenamePosition returns correct bounds', () => {
   const result = getRenamePosition(cursorX, cursorY)
 
   expect(result).toEqual({
-    x: 100,
-    y: 210,
+    renameX: 100,
+    renameY: 210,
     width: 300,
     height: 80,
   })
