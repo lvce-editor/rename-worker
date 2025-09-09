@@ -11,3 +11,5 @@ export const {
   getWordAt,
   getPositionAtCursor,
 } = EditorWorker
+
+export const registerMockRpc = EditorWorker.registerMockRpc
