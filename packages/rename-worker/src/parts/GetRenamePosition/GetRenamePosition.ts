@@ -1,14 +1,19 @@
-import type { Bounds } from '../Bounds/Bounds.ts'
+export interface RenameBounds {
+  readonly renameX: number
+  readonly renameY: number
+  readonly width: number
+  readonly height: number
+}
 
-export const getRenamePosition = (cursorX: number, cursorY: number): Bounds => {
+export const getRenamePosition = (cursorX: number, cursorY: number): RenameBounds => {
   const width = 300
   const height = 80
   const paddingTop = 10
   const renameY = cursorY + paddingTop
   return {
-    y: renameY,
-    x: cursorX,
-    width,
     height,
+    renameX: cursorX,
+    renameY,
+    width,
   }
 }

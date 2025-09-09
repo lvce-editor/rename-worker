@@ -11,7 +11,7 @@ export const loadContent = async (state: RenameState): Promise<RenameState> => {
     return state
   }
   // TODO query if can rename from extension host
-  const { x: renameX, y: renameY, width, height } = GetRenamePosition.getRenamePosition(x, y)
+  const { renameX, renameY, width, height } = GetRenamePosition.getRenamePosition(x, y)
   // TODO
   // 1. query position at cursor
   // 2. the bounds for position
