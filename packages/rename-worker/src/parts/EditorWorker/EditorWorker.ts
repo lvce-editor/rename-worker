@@ -10,6 +10,5 @@ export const {
   closeWidget,
   getWordAt,
   getPositionAtCursor,
+  registerMockRpc,
 } = EditorWorker
-
-export const registerMockRpc = EditorWorker.registerMockRpc
