@@ -4,7 +4,7 @@ export const name = 'viewlet.editor-cannot-rename'
 
 // export const skip = true
 
-export const test: Test = async ({ FileSystem, Workspace, Main, Editor, Locator, expect, FindWidget }) => {
+export const test: Test = async ({ FileSystem, Workspace, Main, Editor, Locator, expect }) => {
   // arrange
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
