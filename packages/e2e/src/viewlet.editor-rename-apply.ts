@@ -4,7 +4,7 @@ export const name = 'viewlet.editor-rename-apply'
 
 export const skip = 1
 
-export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor, Locator, expect, FindWidget }) => {
+export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider')
   await Extension.addWebExtension(extensionUri)
