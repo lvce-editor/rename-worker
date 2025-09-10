@@ -7,7 +7,7 @@ test.skip('execute activates event and calls ExtensionHostWorker.invoke', async 
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
     },
-    'ExtensionHostWorker.invoke': (_method: any, _uid: any, method: any, ...args: any[]) => {
+    'ExtensionHostWorker.invoke': (_method: any, _uid: any, method: any, ...args: readonly any[]) => {
       return { method, uid: 123, args }
     },
   })

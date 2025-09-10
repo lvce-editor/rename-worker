@@ -61,7 +61,7 @@ test.skip('accept calls extension host rename provider with correct parameters',
   }
   // @ts-ignore
 
-  await Accept.accept(editor)
+  await expect(Accept.accept(editor)).resolves.toBeUndefined()
 
   // The extension host should be called with the correct offset and new value
   // This is verified through the mock RPC calls

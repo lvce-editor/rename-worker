@@ -8,7 +8,7 @@ test.skip('executeRenameProvider calls ExtensionHostEditor.execute with correct 
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
     },
-    'ExtensionHostWorker.invoke': (_method: any, _uid: any, method: any, ...args: any[]) => {
+    'ExtensionHostWorker.invoke': (_method: any, _uid: any, method: any, ...args: readonly any[]) => {
       lastArgs = { method, uid: 123, args }
       return 'executed'
     },
