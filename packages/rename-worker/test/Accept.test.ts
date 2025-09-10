@@ -1,8 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
-import * as Accept from '../src/parts/Accept/Accept.js'
-import * as EditorWorker from '../src/parts/EditorWorker/EditorWorker.js'
-import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.js'
+import { EditorWorker } from '@lvce-editor/rpc-registry'
+import * as Accept from '../src/parts/Accept/Accept.ts'
 
 test.skip('accept returns editor when no rename state exists', async () => {
   const editor = {
@@ -15,20 +13,14 @@ test.skip('accept returns editor when no rename state exists', async () => {
 })
 
 test.skip('accept removes rename widget and returns updated editor', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionHostWorker.invoke') {
-        return { edits: [{ offset: 10, deleted: 5 }] }
-      }
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  EditorWorker.registerMockRpc({
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ offset: 10, deleted: 5 }] }
+    },
+    'ExtensionHostManagement.activateByEvent': () => {
+      return undefined
     },
   })
-  ExtensionHostWorker.set(mockRpc)
-  EditorWorker.set(mockRpc)
 
   const editor = {
     widgets: [
@@ -53,20 +45,14 @@ test.skip('accept removes rename widget and returns updated editor', async () =>
 })
 
 test.skip('accept calls extension host rename provider with correct parameters', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionHostWorker.invoke') {
-        return { edits: [{ offset: 15, deleted: 3 }] }
-      }
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  EditorWorker.registerMockRpc({
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ offset: 15, deleted: 3 }] }
+    },
+    'ExtensionHostManagement.activateByEvent': () => {
+      return undefined
     },
   })
-  ExtensionHostWorker.set(mockRpc)
-  EditorWorker.set(mockRpc)
 
   const editor = {
     widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newVariableName' } }],
@@ -75,27 +61,21 @@ test.skip('accept calls extension host rename provider with correct parameters',
   }
   // @ts-ignore
 
-  await Accept.accept(editor)
+  await expect(Accept.accept(editor)).resolves.toBeUndefined()
 
   // The extension host should be called with the correct offset and new value
   // This is verified through the mock RPC calls
 })
 
 test.skip('accept handles empty rename result', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionHostWorker.invoke') {
-        return { edits: [] }
-      }
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  EditorWorker.registerMockRpc({
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [] }
+    },
+    'ExtensionHostManagement.activateByEvent': () => {
+      return undefined
     },
   })
-  ExtensionHostWorker.set(mockRpc)
-  EditorWorker.set(mockRpc)
 
   const editor = {
     widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
@@ -112,20 +92,14 @@ test.skip('accept handles empty rename result', async () => {
 })
 
 test.skip('accept handles extension host error gracefully', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionHostWorker.invoke') {
-        throw new Error('Extension host error')
-      }
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  EditorWorker.registerMockRpc({
+    'ExtensionHostWorker.invoke': () => {
+      throw new Error('Extension host error')
+    },
+    'ExtensionHostManagement.activateByEvent': () => {
+      return undefined
     },
   })
-  ExtensionHostWorker.set(mockRpc)
-  EditorWorker.set(mockRpc)
 
   const editor = {
     widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
@@ -138,20 +112,14 @@ test.skip('accept handles extension host error gracefully', async () => {
 })
 
 test.skip('accept preserves other editor properties', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionHostWorker.invoke') {
-        return { edits: [{ offset: 10, deleted: 2 }] }
-      }
-      if (method === 'ExtensionHostManagement.activateByEvent') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  EditorWorker.registerMockRpc({
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ offset: 10, deleted: 2 }] }
+    },
+    'ExtensionHostManagement.activateByEvent': () => {
+      return undefined
     },
   })
-  ExtensionHostWorker.set(mockRpc)
-  EditorWorker.set(mockRpc)
 
   const editor = {
     widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
