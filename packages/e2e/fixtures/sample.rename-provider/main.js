@@ -1,6 +1,6 @@
 const renameProvider = {
   languageId: 'xyz',
-  provideRename(textDocument, offset) {
+  provideRename(textDocument, offset, newName) {
     // TODO compute rename
     return {
       canRename: true,
@@ -10,7 +10,7 @@ const renameProvider = {
           edits: [
             {
               offset: 4,
-              inserted: 'y',
+              inserted: newName,
               deleted: 1,
             },
           ],
