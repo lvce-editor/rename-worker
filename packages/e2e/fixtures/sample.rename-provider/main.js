@@ -4,7 +4,18 @@ const renameProvider = {
     // TODO compute rename
     return {
       canRename: true,
-      edits: [],
+      edits: [
+        {
+          uri: textDocument.uri,
+          edits: [
+            {
+              offset: 4,
+              inserted: 'y',
+              deleted: 1,
+            },
+          ],
+        },
+      ],
     }
   },
 }
