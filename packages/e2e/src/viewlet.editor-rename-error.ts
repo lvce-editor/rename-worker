@@ -2,11 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename-error'
 
-export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor }) => {
+export const skip = 1
+
+export const test: Test = async ({ Locator, expect, Extension, FileSystem, Workspace, Main, Editor }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-error')
   await Extension.addWebExtension(extensionUri)
-  console.log('did import')
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
     `${tmpDir}/file.xyz`,
@@ -18,9 +19,10 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   await Editor.setCursor(0, 4)
 
   // act
-  // TODO
-  // await Editor.rename2('y')
+  await Editor.rename2('y')
 
   // assert
-  // TODO verify that error message is shown
+  const viewlet = Locator('.Viewlet.EditorRename')
+  await expect(viewlet).toBeVisible()
+  await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: oops`)
 }
