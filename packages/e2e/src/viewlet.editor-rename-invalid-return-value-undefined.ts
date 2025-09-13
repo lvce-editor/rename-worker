@@ -2,11 +2,9 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename-invalid-return-value-undefined'
 
-export const skip = 1
-
-export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor }) => {
+export const test: Test = async ({ Locator, expect, Extension, FileSystem, Workspace, Main, Editor }) => {
   // arrange
-  const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider')
+  const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-invalid-return-value-undefined')
   await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
@@ -22,5 +20,7 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   await Editor.rename2('y')
 
   // assert
-  // TODO verify that error message is shown
+  const viewlet = Locator('.Viewlet.EditorRename')
+  await expect(viewlet).toBeVisible()
+  await expect(viewlet).toHaveText(`TypeError: Cannot read properties of null (reading 'edits')`)
 }
