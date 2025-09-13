@@ -17,5 +17,6 @@ export const createDefaultState = (): RenameState => {
     width: 0,
     x: 0,
     y: 0,
+    errorMessage: '',
   }
 }

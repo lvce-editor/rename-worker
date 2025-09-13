@@ -1,5 +1,6 @@
 export interface RenameState {
   readonly editorLanguageId: string
+  readonly errorMessage: string
   readonly focused: boolean
   readonly focusedIndex: number
   readonly height: number
