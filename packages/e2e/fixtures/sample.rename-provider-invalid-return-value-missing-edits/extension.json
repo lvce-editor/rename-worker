@@ -1,0 +1,10 @@
+{
+  "browser": "main.js",
+  "activation": ["onRename:xyz", "onRename"],
+  "languages": [
+    {
+      "id": "xyz",
+      "extensions": [".xyz"]
+    }
+  ]
+}
