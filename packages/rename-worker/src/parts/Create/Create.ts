@@ -28,6 +28,7 @@ export const create = (
     width,
     x,
     y,
+    errorMessage: '',
   }
   RenameStates.set(uid, state, state)
   return state
