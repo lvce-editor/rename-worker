@@ -5,5 +5,5 @@ const renameProvider = {
   },
 }
 export const activate = () => {
-  vscode.registerRename(renameProvider)
+  vscode.registerRenameProvider(renameProvider)
 }
