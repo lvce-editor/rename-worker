@@ -20,7 +20,7 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   await Editor.rename2('y')
 
   // act
-  await Command.execute('Editor.undo')
+  await Editor.undo()
 
   // assert
   await Editor.shouldHaveText(`let x = 1
