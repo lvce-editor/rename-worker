@@ -18,7 +18,7 @@
     "@types/node": "^22.9.0",
     "esbuild": "^0.25.9",
     "execa": "^9.6.0",
-    "rollup": "^4.50.1",
+    "rollup": "^4.50.2",
     "typescript": "^5.9.2"
   }
 }
