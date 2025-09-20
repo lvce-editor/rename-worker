@@ -16,9 +16,9 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/node": "^22.9.0",
-    "esbuild": "^0.25.9",
+    "esbuild": "^0.25.10",
     "execa": "^9.6.0",
-    "rollup": "^4.50.2",
+    "rollup": "^4.52.0",
     "typescript": "^5.9.2"
   }
 }
