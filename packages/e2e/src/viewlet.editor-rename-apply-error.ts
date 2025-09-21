@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename-apply-error'
 
-export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor }) => {
+export const test: Test = async ({ Locator, expect, Extension, FileSystem, Workspace, Main, Editor }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-apply-error')
   await Extension.addWebExtension(extensionUri)
@@ -20,6 +20,7 @@ export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Edito
   await Editor.rename2('y')
 
   // assert
-  await Editor.shouldHaveText(`let y = 1
-`)
+  const viewlet = Locator('.Viewlet.EditorRename')
+  await expect(viewlet).toBeVisible()
+  await expect(viewlet).toHaveText(`TypeError: Cannot read properties of null (reading 'offset')`)
 }
