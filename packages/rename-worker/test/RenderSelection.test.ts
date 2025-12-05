@@ -7,9 +7,9 @@ test('renderSelection returns correct command', () => {
   const oldState = createDefaultState()
   const newState = {
     ...createDefaultState(),
-    uid: 123,
-    selectionStart: 5,
     selectionEnd: 10,
+    selectionStart: 5,
+    uid: 123,
   }
 
   const result = renderSelection(oldState, newState)

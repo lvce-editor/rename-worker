@@ -8,11 +8,11 @@ const combineResults = (results: any): readonly any[] => {
 
 export const executeRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number, newName: string): Promise<any> => {
   return ExtensionHostEditor.execute({
-    editorUid: editorUid,
-    editorLanguageId,
-    event: ExtensionHostActivationEvent.OnRename,
-    method: ExtensionHostCommandType.RenameExecuteRename,
     args: [offset, newName],
     combineResults,
+    editorLanguageId,
+    editorUid: editorUid,
+    event: ExtensionHostActivationEvent.OnRename,
+    method: ExtensionHostCommandType.RenameExecuteRename,
   })
 }

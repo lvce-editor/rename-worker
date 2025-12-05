@@ -5,11 +5,11 @@ import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 
 test('loadContent - no word at cursor', async () => {
   EditorWorker.registerMockRpc({
+    'Editor.getPositionAtCursor': () => {
+      return { columnIndex: 0, rowIndex: 0, x: 0, y: 0 }
+    },
     'Editor.getWordAt2': () => {
       return null
-    },
-    'Editor.getPositionAtCursor': () => {
-      return { rowIndex: 0, columnIndex: 0, x: 0, y: 0 }
     },
   })
 
@@ -20,11 +20,11 @@ test('loadContent - no word at cursor', async () => {
 
 test('loadContent - with word at cursor', async () => {
   EditorWorker.registerMockRpc({
+    'Editor.getPositionAtCursor': () => {
+      return { columnIndex: 0, rowIndex: 0, x: 100, y: 100 }
+    },
     'Editor.getWordAt2': () => {
       return 'test'
-    },
-    'Editor.getPositionAtCursor': () => {
-      return { rowIndex: 0, columnIndex: 0, x: 100, y: 100 }
     },
   })
 
@@ -32,13 +32,13 @@ test('loadContent - with word at cursor', async () => {
   const result = await loadContent(state)
   expect(result).toEqual({
     ...state,
+    focused: true,
+    height: 80,
     oldValue: 'test',
+    selectionEnd: 4,
     version: 1,
+    width: 300,
     x: 100,
     y: 110,
-    width: 300,
-    height: 80,
-    focused: true,
-    selectionEnd: 4,
   })
 })

@@ -46,7 +46,7 @@ test('positionAt should calculate correct position for single line', () => {
     lines: ['hello world'],
   }
   const result = TextDocument.positionAt(textDocument, 5)
-  expect(result).toEqual({ rowIndex: 0, columnIndex: 5 })
+  expect(result).toEqual({ columnIndex: 5, rowIndex: 0 })
 })
 
 test('positionAt should calculate correct position for multi-line document', () => {
@@ -54,7 +54,7 @@ test('positionAt should calculate correct position for multi-line document', () 
     lines: ['hello', 'world', 'test'],
   }
   const result = TextDocument.positionAt(textDocument, 8)
-  expect(result).toEqual({ rowIndex: 1, columnIndex: 2 })
+  expect(result).toEqual({ columnIndex: 2, rowIndex: 1 })
 })
 
 test('positionAt should handle offset at line boundary', () => {
@@ -62,7 +62,7 @@ test('positionAt should handle offset at line boundary', () => {
     lines: ['hello', 'world'],
   }
   const result = TextDocument.positionAt(textDocument, 6)
-  expect(result).toEqual({ rowIndex: 1, columnIndex: 0 })
+  expect(result).toEqual({ columnIndex: 0, rowIndex: 1 })
 })
 
 test('positionAt should handle offset beyond document length', () => {
@@ -70,7 +70,7 @@ test('positionAt should handle offset beyond document length', () => {
     lines: ['hello', 'world'],
   }
   const result = TextDocument.positionAt(textDocument, 20)
-  expect(result).toEqual({ rowIndex: 2, columnIndex: -8 })
+  expect(result).toEqual({ columnIndex: -8, rowIndex: 2 })
 })
 
 test('positionAt should handle empty document', () => {
@@ -78,7 +78,7 @@ test('positionAt should handle empty document', () => {
     lines: [],
   }
   const result = TextDocument.positionAt(textDocument, 5)
-  expect(result).toEqual({ rowIndex: 0, columnIndex: -5 })
+  expect(result).toEqual({ columnIndex: -5, rowIndex: 0 })
 })
 
 test('positionAt should handle offset at end of document', () => {
@@ -86,7 +86,7 @@ test('positionAt should handle offset at end of document', () => {
     lines: ['hello', 'world'],
   }
   const result = TextDocument.positionAt(textDocument, 12)
-  expect(result).toEqual({ rowIndex: 2, columnIndex: 0 })
+  expect(result).toEqual({ columnIndex: 0, rowIndex: 2 })
 })
 
 test('positionAt should handle offset in middle of line', () => {
@@ -94,7 +94,7 @@ test('positionAt should handle offset in middle of line', () => {
     lines: ['hello world', 'test example'],
   }
   const result = TextDocument.positionAt(textDocument, 7)
-  expect(result).toEqual({ rowIndex: 0, columnIndex: 7 })
+  expect(result).toEqual({ columnIndex: 7, rowIndex: 0 })
 })
 
 test('positionAt should handle offset at start of second line', () => {
@@ -102,40 +102,40 @@ test('positionAt should handle offset at start of second line', () => {
     lines: ['hello', 'world'],
   }
   const result = TextDocument.positionAt(textDocument, 6)
-  expect(result).toEqual({ rowIndex: 1, columnIndex: 0 })
+  expect(result).toEqual({ columnIndex: 0, rowIndex: 1 })
 })
 
 test('getSelectionText: start.rowIndex out of bounds', () => {
   const textDocument = { lines: ['abc', 'def'] }
-  const selection = { start: { rowIndex: 5, columnIndex: 1 }, end: { rowIndex: 5, columnIndex: 2 } }
+  const selection = { end: { columnIndex: 2, rowIndex: 5 }, start: { columnIndex: 1, rowIndex: 5 } }
   const result = TextDocument.getSelectionText(textDocument, selection)
   expect(result).toBe('')
 })
 
 test('getSelectionText: negative start.columnIndex', () => {
   const textDocument = { lines: ['abcdef'] }
-  const selection = { start: { rowIndex: 0, columnIndex: -2 }, end: { rowIndex: 0, columnIndex: 3 } }
+  const selection = { end: { columnIndex: 3, rowIndex: 0 }, start: { columnIndex: -2, rowIndex: 0 } }
   const result = TextDocument.getSelectionText(textDocument, selection)
   expect(result).toBe('')
 })
 
 test('getSelectionText: negative end.columnIndex on last line', () => {
   const textDocument = { lines: ['abc', 'def', 'ghi'] }
-  const selection = { start: { rowIndex: 1, columnIndex: 1 }, end: { rowIndex: 2, columnIndex: -2 } }
+  const selection = { end: { columnIndex: -2, rowIndex: 2 }, start: { columnIndex: 1, rowIndex: 1 } }
   const result = TextDocument.getSelectionText(textDocument, selection)
   expect(result).toBe('ef\n')
 })
 
 test('getSelectionText: end.columnIndex out of bounds on last line', () => {
   const textDocument = { lines: ['abc', 'def', 'ghi'] }
-  const selection = { start: { rowIndex: 1, columnIndex: 1 }, end: { rowIndex: 2, columnIndex: 99 } }
+  const selection = { end: { columnIndex: 99, rowIndex: 2 }, start: { columnIndex: 1, rowIndex: 1 } }
   const result = TextDocument.getSelectionText(textDocument, selection)
   expect(result).toBe('ef\nghi')
 })
 
 test('getSelectionText: multi-line selection with end.rowIndex out of bounds', () => {
   const textDocument = { lines: ['abc', 'def'] }
-  const selection = { start: { rowIndex: 0, columnIndex: 1 }, end: { rowIndex: 5, columnIndex: 2 } }
+  const selection = { end: { columnIndex: 2, rowIndex: 5 }, start: { columnIndex: 1, rowIndex: 0 } }
   const result = TextDocument.getSelectionText(textDocument, selection)
   expect(result).toBe('bc\ndef\n\n\n')
 })

@@ -4,7 +4,7 @@ export const name = 'viewlet.editor-rename-apply-invalid-document-uri'
 
 export const skip = 1
 
-export const test: Test = async ({ Locator, expect, Extension, FileSystem, Workspace, Main, Editor }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-apply-invalid-document-uri')
   await Extension.addWebExtension(extensionUri)

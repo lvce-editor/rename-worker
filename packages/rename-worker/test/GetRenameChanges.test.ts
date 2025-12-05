@@ -9,6 +9,6 @@ test('getRenameChanges - no edits', () => {
 
 test('getRenameChanges - with edits', () => {
   const editor = { lines: ['test line'] }
-  const result = getRenameChanges(editor, { inserted: 'new', edits: [{ offset: 0, deleted: 3 }] })
+  const result = getRenameChanges(editor, { edits: [{ deleted: 3, offset: 0 }], inserted: 'new' })
   expect(Array.isArray(result)).toBe(true)
 })

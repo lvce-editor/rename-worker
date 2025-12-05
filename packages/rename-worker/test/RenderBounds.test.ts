@@ -7,11 +7,11 @@ test('renderBounds returns correct command', () => {
   const oldState = createDefaultState()
   const newState = {
     ...createDefaultState(),
+    height: 400,
     uid: 123,
+    width: 300,
     x: 100,
     y: 200,
-    width: 300,
-    height: 400,
   }
 
   const result = renderBounds(oldState, newState)

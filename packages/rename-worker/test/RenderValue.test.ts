@@ -7,9 +7,9 @@ test('renderValue returns correct command', () => {
   const oldState = createDefaultState()
   const newState = {
     ...createDefaultState(),
-    uid: 123,
-    oldValue: 'test-value',
     newValue: 'test-value',
+    oldValue: 'test-value',
+    uid: 123,
   }
 
   const result = renderValue(oldState, newState)

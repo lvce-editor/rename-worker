@@ -6,8 +6,8 @@ import * as GetRenameVirtualDom from '../src/parts/GetRenameVirtualDom/GetRename
 test('getRenameVirtualDom', () => {
   const state: RenameState = {
     ...createDefaultState(),
-    oldValue: 'a',
     newValue: 'b',
+    oldValue: 'a',
   }
   expect(GetRenameVirtualDom.getRenameVirtualDom(state)).toEqual([
     {
@@ -18,10 +18,10 @@ test('getRenameVirtualDom', () => {
     {
       childCount: 0,
       className: 'InputBox RenameInputBox',
-      type: 6,
+      name: 'Rename',
       onBlur: 'handleBlur',
       onInput: 'handleInput',
-      name: 'Rename',
+      type: 6,
     },
     {
       childCount: 1,

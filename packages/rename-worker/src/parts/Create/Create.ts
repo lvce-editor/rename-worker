@@ -14,6 +14,7 @@ export const create = (
   Assert.number(uid)
   const state: RenameState = {
     editorLanguageId,
+    errorMessage: '',
     focused: false,
     focusedIndex: 0,
     height,
@@ -28,7 +29,6 @@ export const create = (
     width,
     x,
     y,
-    errorMessage: '',
   }
   RenameStates.set(uid, state, state)
   return state

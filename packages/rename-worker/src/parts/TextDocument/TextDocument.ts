@@ -35,14 +35,14 @@ export const positionAt = (textDocument: any, offset: number): any => {
     columnIndex = currentOffset - offset
   }
   return {
-    rowIndex,
     columnIndex,
+    rowIndex,
   }
 }
 
 export const getSelectionText = (textDocument: any, selection: any): string => {
   const { lines } = textDocument
-  const { start, end } = selection
+  const { end, start } = selection
 
   if (start.rowIndex === end.rowIndex) {
     // Same line selection

@@ -3,19 +3,19 @@ import * as ApplyRender from '../src/parts/ApplyRender/ApplyRender.js'
 import * as DiffType from '../src/parts/DiffType/DiffType.js'
 
 const makeRenameState = (uid: number): any => ({
-  uid,
-  focusedIndex: 0,
   focused: false,
-  oldValue: '',
+  focusedIndex: 0,
+  height: 0,
   newValue: '',
+  oldValue: '',
+  parentUid: 0,
+  selectionEnd: 0,
+  selectionStart: 0,
+  uid,
+  version: 1,
+  width: 0,
   x: 0,
   y: 0,
-  width: 0,
-  height: 0,
-  version: 1,
-  parentUid: 0,
-  selectionStart: 0,
-  selectionEnd: 0,
 })
 
 test('applyRender returns empty array for empty diffResult', () => {

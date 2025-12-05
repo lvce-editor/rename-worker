@@ -4,7 +4,7 @@ export const name = 'viewlet.editor-rename-undo'
 
 export const skip = 1
 
-export const test: Test = async ({ Extension, FileSystem, Workspace, Main, Editor }) => {
+export const test: Test = async ({ Editor, Extension, FileSystem, Main, Workspace }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider')
   await Extension.addWebExtension(extensionUri)
