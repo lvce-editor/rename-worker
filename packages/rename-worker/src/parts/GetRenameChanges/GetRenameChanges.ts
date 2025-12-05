@@ -13,14 +13,14 @@ export const getRenameChanges = (editor: any, result: any): readonly any[] => {
       ...position,
       columnIndex: start.columnIndex + edit.deleted,
     }
-    const selection = { start, end }
+    const selection = { end, start }
     changes.push({
-      start,
-      end,
-      inserted: [result.inserted],
       // @ts-ignore
       deleted: TextDocument.getSelectionText(editor, selection),
+      end,
+      inserted: [result.inserted],
       origin: EditOrigin.Rename,
+      start,
     })
   }
   return changes

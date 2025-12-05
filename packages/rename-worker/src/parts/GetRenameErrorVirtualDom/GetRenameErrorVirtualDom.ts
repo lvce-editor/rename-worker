@@ -4,9 +4,9 @@ import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
   childCount: 1,
+  className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
+  type: VirtualDomElements.Div,
 }
 
 export const getRenameErrorVirtualDom = (errorMessage: string): readonly VirtualDomNode[] => {

@@ -5,13 +5,13 @@ import * as GetRenamePosition from '../GetRenamePosition/GetRenamePosition.ts'
 
 export const loadContent = async (state: RenameState): Promise<RenameState> => {
   const { parentUid } = state
-  const { rowIndex, columnIndex, x, y } = await GetPositionAtCursor.getPositionAtCursor(parentUid)
+  const { columnIndex, rowIndex, x, y } = await GetPositionAtCursor.getPositionAtCursor(parentUid)
   const word = await EditorCommandGetWordAt.getWordAt(parentUid, rowIndex, columnIndex)
   if (!word) {
     return state
   }
   // TODO query if can rename from extension host
-  const { renameX, renameY, width, height } = GetRenamePosition.getRenamePosition(x, y)
+  const { height, renameX, renameY, width } = GetRenamePosition.getRenamePosition(x, y)
   // TODO
   // 1. query position at cursor
   // 2. the bounds for position
@@ -19,13 +19,13 @@ export const loadContent = async (state: RenameState): Promise<RenameState> => {
   const selectionEnd = word.length
   return {
     ...state,
+    focused: true,
+    height,
     oldValue: word,
+    selectionEnd,
     version: 1,
+    width,
     x: renameX,
     y: renameY,
-    width,
-    height,
-    focused: true,
-    selectionEnd,
   }
 }

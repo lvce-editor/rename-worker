@@ -8,12 +8,12 @@ test.skip('execute activates event and calls ExtensionHostWorker.invoke', async 
       return undefined
     },
     'ExtensionHostWorker.invoke': (_method: any, _uid: any, method: any, ...args: readonly any[]) => {
-      return { method, uid: 123, args }
+      return { args, method, uid: 123 }
     },
   })
 
   const editor = { languageId: 'js' } as any
-  const result = await ExtensionHostEditor.execute({ editor, args: [1, 2], event: 'onTest', method: 'doSomething' } as any)
+  const result = await ExtensionHostEditor.execute({ args: [1, 2], editor, event: 'onTest', method: 'doSomething' } as any)
   expect(result.method).toBe('doSomething')
   expect(result.uid).toBe(123)
   expect(result.args).toEqual([1, 2])

@@ -4,8 +4,8 @@ import * as Accept from '../src/parts/Accept/Accept.ts'
 
 test.skip('accept returns editor when no rename state exists', async () => {
   const editor = {
-    widgets: [],
     selections: [0, 0],
+    widgets: [],
   }
   // @ts-ignore
   const result = await Accept.accept(editor)
@@ -14,22 +14,22 @@ test.skip('accept returns editor when no rename state exists', async () => {
 
 test.skip('accept removes rename widget and returns updated editor', async () => {
   EditorWorker.registerMockRpc({
-    'ExtensionHostWorker.invoke': () => {
-      return { edits: [{ offset: 10, deleted: 5 }] }
-    },
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
+    },
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ deleted: 5, offset: 10 }] }
     },
   })
 
   const editor = {
+    lines: ['hello world'],
+    selections: [0, 5],
     widgets: [
       { id: 1, type: 'other' },
-      { id: 7, type: 'rename', newState: { newValue: 'newName' } },
+      { id: 7, newState: { newValue: 'newName' }, type: 'rename' },
       { id: 2, type: 'another' },
     ],
-    selections: [0, 5],
-    lines: ['hello world'],
   }
   // @ts-ignore
 
@@ -46,18 +46,18 @@ test.skip('accept removes rename widget and returns updated editor', async () =>
 
 test.skip('accept calls extension host rename provider with correct parameters', async () => {
   EditorWorker.registerMockRpc({
-    'ExtensionHostWorker.invoke': () => {
-      return { edits: [{ offset: 15, deleted: 3 }] }
-    },
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
+    },
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ deleted: 3, offset: 15 }] }
     },
   })
 
   const editor = {
-    widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newVariableName' } }],
-    selections: [1, 3],
     lines: ['hello world'],
+    selections: [1, 3],
+    widgets: [{ id: 7, newState: { newValue: 'newVariableName' }, type: 'rename' }],
   }
   // @ts-ignore
 
@@ -69,18 +69,18 @@ test.skip('accept calls extension host rename provider with correct parameters',
 
 test.skip('accept handles empty rename result', async () => {
   EditorWorker.registerMockRpc({
-    'ExtensionHostWorker.invoke': () => {
-      return { edits: [] }
-    },
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
+    },
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [] }
     },
   })
 
   const editor = {
-    widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
-    selections: [0, 0],
     lines: ['hello'],
+    selections: [0, 0],
+    widgets: [{ id: 7, newState: { newValue: 'newName' }, type: 'rename' }],
   }
   // @ts-ignore
 
@@ -93,18 +93,18 @@ test.skip('accept handles empty rename result', async () => {
 
 test.skip('accept handles extension host error gracefully', async () => {
   EditorWorker.registerMockRpc({
-    'ExtensionHostWorker.invoke': () => {
-      throw new Error('Extension host error')
-    },
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
+    },
+    'ExtensionHostWorker.invoke': () => {
+      throw new Error('Extension host error')
     },
   })
 
   const editor = {
-    widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
-    selections: [0, 0],
     lines: ['hello'],
+    selections: [0, 0],
+    widgets: [{ id: 7, newState: { newValue: 'newName' }, type: 'rename' }],
   }
   // @ts-ignore
 
@@ -113,20 +113,20 @@ test.skip('accept handles extension host error gracefully', async () => {
 
 test.skip('accept preserves other editor properties', async () => {
   EditorWorker.registerMockRpc({
-    'ExtensionHostWorker.invoke': () => {
-      return { edits: [{ offset: 10, deleted: 2 }] }
-    },
     'ExtensionHostManagement.activateByEvent': () => {
       return undefined
+    },
+    'ExtensionHostWorker.invoke': () => {
+      return { edits: [{ deleted: 2, offset: 10 }] }
     },
   })
 
   const editor = {
-    widgets: [{ id: 7, type: 'rename', newState: { newValue: 'newName' } }],
-    selections: [0, 5],
-    lines: ['hello world'],
-    customProperty: 'customValue',
     anotherProperty: 123,
+    customProperty: 'customValue',
+    lines: ['hello world'],
+    selections: [0, 5],
+    widgets: [{ id: 7, newState: { newValue: 'newName' }, type: 'rename' }],
   }
 
   // @ts-ignore

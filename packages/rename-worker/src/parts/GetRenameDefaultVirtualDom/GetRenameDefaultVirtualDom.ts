@@ -9,9 +9,9 @@ import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts
 export const getRenameDefaultVirtualDom = (state: RenameState): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
       childCount: 2,
+      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
+      type: VirtualDomElements.Div,
     },
     ...GetRenameInputVirtualDom.getRenameInputVirtualDom(),
     ...GetRenameDetailsVirtualDom.getRenameDetailsVirtualDom(),

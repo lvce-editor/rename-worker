@@ -4,9 +4,9 @@ import * as RenameStrings from '../RenameStrings/RenameStrings.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: ClassNames.RenameDetails,
   childCount: 1,
+  className: ClassNames.RenameDetails,
+  type: VirtualDomElements.Div,
 }
 
 export const getRenameDetailsVirtualDom = (): readonly VirtualDomNode[] => {

@@ -4,19 +4,19 @@ import * as RenameStates from '../src/parts/RenameStates/RenameStates.js'
 import * as Render2 from '../src/parts/Render2/Render2.js'
 
 const makeRenameState = (uid: number): any => ({
-  uid,
-  focusedIndex: 0,
   focused: false,
-  oldValue: '',
+  focusedIndex: 0,
+  height: 0,
   newValue: '',
+  oldValue: '',
+  parentUid: 0,
+  selectionEnd: 0,
+  selectionStart: 0,
+  uid,
+  version: 1,
+  width: 0,
   x: 0,
   y: 0,
-  width: 0,
-  height: 0,
-  version: 1,
-  parentUid: 0,
-  selectionStart: 0,
-  selectionEnd: 0,
 })
 
 test('render2 returns commands from ApplyRender', () => {

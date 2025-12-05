@@ -3,6 +3,7 @@ import type { RenameState } from '../RenameState/RenameState.ts'
 export const createDefaultState = (): RenameState => {
   return {
     editorLanguageId: '',
+    errorMessage: '',
     focused: false,
     focusedIndex: 0,
     height: 0,
@@ -17,6 +18,5 @@ export const createDefaultState = (): RenameState => {
     width: 0,
     x: 0,
     y: 0,
-    errorMessage: '',
   }
 }

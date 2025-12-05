@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename-type-error'
 
-export const test: Test = async ({ Locator, expect, Extension, FileSystem, Workspace, Main, Editor }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-type-error')
   await Extension.addWebExtension(extensionUri)

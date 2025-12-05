@@ -1,8 +1,8 @@
 export interface RenameBounds {
+  readonly height: number
   readonly renameX: number
   readonly renameY: number
   readonly width: number
-  readonly height: number
 }
 
 export const getRenamePosition = (cursorX: number, cursorY: number): RenameBounds => {
