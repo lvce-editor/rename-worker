@@ -32,7 +32,7 @@ test('applyRender returns array with one command for single diffResult', () => {
   const diffResult = [DiffType.RenderContent]
   const result = ApplyRender.applyRender(oldState, newState, diffResult)
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(1)
+  expect(result).toHaveLength(1)
 })
 
 test('applyRender returns array with multiple commands for multiple diffResult', () => {
@@ -41,7 +41,7 @@ test('applyRender returns array with multiple commands for multiple diffResult',
   const diffResult = [DiffType.RenderContent, DiffType.RenderBounds]
   const result = ApplyRender.applyRender(oldState, newState, diffResult)
   expect(Array.isArray(result)).toBe(true)
-  expect(result.length).toBe(2)
+  expect(result).toHaveLength(2)
 })
 
 test('applyRender throws for unknown diff type', () => {

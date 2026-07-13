@@ -3,7 +3,7 @@ import { EditorWorker } from '@lvce-editor/rpc-registry'
 import { close } from '../src/parts/Close/Close.ts'
 
 test('close', async () => {
-  const mockRpc = EditorWorker.registerMockRpc({
+  using mockRpc = EditorWorker.registerMockRpc({
     'Editor.closeWidget2': () => {
       return undefined
     },

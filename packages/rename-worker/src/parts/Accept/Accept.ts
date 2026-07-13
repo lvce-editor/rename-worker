@@ -16,7 +16,7 @@ export const accept = async (state: RenameState): Promise<RenameState> => {
     await Logger.error(error)
     return {
       ...state,
-      errorMessage: `${error}`,
+      errorMessage: String(error),
     }
   }
 }
