@@ -19,7 +19,6 @@ export const offsetAt = (textDocument: any, positionRowIndex: number, positionCo
 export const positionAt = (textDocument: any, offset: number): any => {
   const { lines } = textDocument
   let rowIndex = 0
-  let columnIndex = 0
   let currentOffset = 0
 
   while (rowIndex < lines.length && currentOffset < offset) {
@@ -30,12 +29,14 @@ export const positionAt = (textDocument: any, offset: number): any => {
   if (currentOffset > offset) {
     rowIndex--
     currentOffset -= lines[rowIndex].length + 1
-    columnIndex = offset - currentOffset
-  } else {
-    columnIndex = currentOffset - offset
+    const columnIndex = offset - currentOffset
+    return {
+      columnIndex,
+      rowIndex,
+    }
   }
   return {
-    columnIndex,
+    columnIndex: currentOffset - offset,
     rowIndex,
   }
 }
@@ -48,25 +49,24 @@ export const getSelectionText = (textDocument: any, selection: any): string => {
     // Same line selection
     const line = lines[start.rowIndex] || ''
     return line.slice(start.columnIndex, end.columnIndex)
-  } else {
-    // Multi-line selection
-    let result = ''
-
-    // First line
-    const firstLine = lines[start.rowIndex] || ''
-    result += firstLine.slice(Math.max(0, start.columnIndex))
-
-    // Middle lines
-    for (let i = start.rowIndex + 1; i < end.rowIndex; i++) {
-      result += '\n' + (lines[i] || '')
-    }
-
-    // Last line
-    if (end.rowIndex < lines.length) {
-      const lastLine = lines[end.rowIndex] || ''
-      result += '\n' + lastLine.slice(0, Math.max(0, end.columnIndex))
-    }
-
-    return result
   }
+  // Multi-line selection
+  let result = ''
+
+  // First line
+  const firstLine = lines[start.rowIndex] || ''
+  result += firstLine.slice(Math.max(0, start.columnIndex))
+
+  // Middle lines
+  for (let i = start.rowIndex + 1; i < end.rowIndex; i++) {
+    result += '\n' + (lines[i] || '')
+  }
+
+  // Last line
+  if (end.rowIndex < lines.length) {
+    const lastLine = lines[end.rowIndex] || ''
+    result += '\n' + lastLine.slice(0, Math.max(0, end.columnIndex))
+  }
+
+  return result
 }
