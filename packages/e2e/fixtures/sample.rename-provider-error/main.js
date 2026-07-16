@@ -1,5 +1,5 @@
 const renameProvider = {
-  languageId: 'xyz',
+  languageId: 'rename-error',
   provideRename(textDocument, offset) {
     throw new Error('oops')
   },

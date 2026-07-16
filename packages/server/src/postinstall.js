@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from 'node:fs/promises'
+import { cp, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -16,6 +16,10 @@ const nodeModulesPath = join(root, 'packages', 'server', 'node_modules')
 const workerPath = join(root, '.tmp', 'dist', 'dist', 'renameWorkerMain.js')
 
 const serverStaticPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'static')
+
+const staticServerConfigPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'config.json')
+
+const sharedProcessConfigPath = join(nodeModulesPath, '@lvce-editor', 'shared-process', 'config.json')
 
 const RE_COMMIT_HASH = /^[a-z\d]+$/
 const isCommitHash = (dirent) => {
@@ -37,3 +41,5 @@ const renameWorkerUrl = \`${remoteUrl}\``
   const newContent = content.replace(occurrence, replacement)
   await writeFile(rendererWorkerMainPath, newContent)
 }
+
+await cp(staticServerConfigPath, sharedProcessConfigPath)

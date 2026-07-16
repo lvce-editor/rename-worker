@@ -1,5 +1,5 @@
 const renameProvider = {
-  languageId: 'xyz',
+  languageId: 'rename-provider',
   provideRename(textDocument, offset, newName) {
     // TODO compute rename
     return {

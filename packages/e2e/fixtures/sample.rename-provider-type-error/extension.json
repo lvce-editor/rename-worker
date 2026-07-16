@@ -1,10 +1,6 @@
 {
   "browser": "main.js",
-  "activation": ["onRename:xyz"],
-  "languages": [
-    {
-      "id": "xyz",
-      "extensions": [".xyz"]
-    }
-  ]
+  "activation": ["onRename:rename-type-error"],
+  "languages": [{ "id": "rename-type-error", "extensions": [".rename-type-error"] }],
+  "id": "sample.rename-provider-type-error"
 }

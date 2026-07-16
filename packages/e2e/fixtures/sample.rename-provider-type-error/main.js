@@ -1,5 +1,5 @@
 const renameProvider = {
-  languageId: 'xyz',
+  languageId: 'rename-type-error',
   provideRename(textDocument, offset) {
     throw new TypeError('x is not a function')
   },

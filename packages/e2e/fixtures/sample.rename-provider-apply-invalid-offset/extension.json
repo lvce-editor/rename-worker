@@ -1,10 +1,6 @@
 {
   "browser": "main.js",
-  "activation": ["onRename:xyz", "onRename"],
-  "languages": [
-    {
-      "id": "xyz",
-      "extensions": [".xyz"]
-    }
-  ]
+  "activation": ["onRename:rename-apply-invalid-offset"],
+  "languages": [{ "id": "rename-apply-invalid-offset", "extensions": [".rename-apply-invalid-offset"] }],
+  "id": "sample.rename-provider-apply-invalid-offset"
 }

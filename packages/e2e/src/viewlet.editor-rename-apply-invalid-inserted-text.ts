@@ -8,19 +8,19 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.xyz`,
+    `${tmpDir}/file.rename-apply-invalid-inserted-text`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.xyz`)
+  await Main.openUri(`${tmpDir}/file.rename-apply-invalid-inserted-text`)
   await Editor.setCursor(0, 4)
 
   // act
   await Editor.rename2('y')
 
   // assert
-  const viewlet = Locator('.Viewlet.EditorRename')
+  const viewlet = Locator('.Viewlet.EditorRename', { hasText: `TypeError: Cannot read properties of null (reading 'length')` })
   await expect(viewlet).toBeVisible()
   await expect(viewlet).toHaveText(`TypeError: Cannot read properties of null (reading 'length')`)
 }
