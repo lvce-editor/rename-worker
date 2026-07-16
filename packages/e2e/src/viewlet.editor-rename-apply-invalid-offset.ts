@@ -8,12 +8,12 @@ export const test: Test = async ({ Editor, Extension, FileSystem, Main, Workspac
   await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.xyz`,
+    `${tmpDir}/file.rename-apply-invalid-offset`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.xyz`)
+  await Main.openUri(`${tmpDir}/file.rename-apply-invalid-offset`)
   await Editor.setCursor(0, 4)
 
   // act

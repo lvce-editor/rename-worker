@@ -1,10 +1,6 @@
 {
   "browser": "main.js",
-  "activation": ["onRename:xyz", "onRename"],
-  "languages": [
-    {
-      "id": "xyz",
-      "extensions": [".xyz"]
-    }
-  ]
+  "activation": ["onRename:rename-apply-invalid-edits"],
+  "languages": [{ "id": "rename-apply-invalid-edits", "extensions": [".rename-apply-invalid-edits"] }],
+  "id": "sample.rename-provider-apply-invalid-edits"
 }

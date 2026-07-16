@@ -1,10 +1,6 @@
 {
   "browser": "main.js",
-  "activation": ["onRename:xyz", "onRename"],
-  "languages": [
-    {
-      "id": "xyz",
-      "extensions": [".xyz"]
-    }
-  ]
+  "activation": ["onRename:rename-invalid-return-value-missing-edits"],
+  "languages": [{ "id": "rename-invalid-return-value-missing-edits", "extensions": [".rename-invalid-return-value-missing-edits"] }],
+  "id": "sample.rename-provider-invalid-return-value-missing-edits"
 }

@@ -8,19 +8,21 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.xyz`,
+    `${tmpDir}/file.rename-apply-invalid-edits`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.xyz`)
+  await Main.openUri(`${tmpDir}/file.rename-apply-invalid-edits`)
   await Editor.setCursor(0, 4)
 
   // act
   await Editor.rename2('y')
 
   // assert
-  const viewlet = Locator('.Viewlet.EditorRename')
+  const viewlet = Locator('.Viewlet.EditorRename', {
+    hasText: `VError: Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array`,
+  })
   await expect(viewlet).toBeVisible()
-  await expect(viewlet).toHaveText(`TypeError: change.edits is not iterable`)
+  await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array`)
 }

@@ -8,19 +8,19 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.xyz`,
+    `${tmpDir}/file.rename-type-error`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.xyz`)
+  await Main.openUri(`${tmpDir}/file.rename-type-error`)
   await Editor.setCursor(0, 4)
 
   // act
   await Editor.rename2('y')
 
   // assert
-  const viewlet = Locator('.Viewlet.EditorRename')
+  const viewlet = Locator('.Viewlet.EditorRename', { hasText: `VError: Failed to execute rename provider: TypeError: x is not a function` })
   await expect(viewlet).toBeVisible()
   await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: TypeError: x is not a function`)
 }

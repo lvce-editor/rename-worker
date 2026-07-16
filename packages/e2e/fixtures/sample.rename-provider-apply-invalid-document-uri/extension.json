@@ -1,10 +1,6 @@
 {
   "browser": "main.js",
-  "activation": ["onRename:xyz", "onRename"],
-  "languages": [
-    {
-      "id": "xyz",
-      "extensions": [".xyz"]
-    }
-  ]
+  "activation": ["onRename:rename-apply-invalid-document-uri"],
+  "languages": [{ "id": "rename-apply-invalid-document-uri", "extensions": [".rename-apply-invalid-document-uri"] }],
+  "id": "sample.rename-provider-apply-invalid-document-uri"
 }

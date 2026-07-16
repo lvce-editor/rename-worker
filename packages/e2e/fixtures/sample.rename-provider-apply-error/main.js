@@ -1,5 +1,5 @@
 const renameProvider = {
-  languageId: 'xyz',
+  languageId: 'rename-apply-error',
   provideRename(textDocument, offset, newName) {
     return {
       canRename: true,
