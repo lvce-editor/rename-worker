@@ -8,6 +8,11 @@ import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts
 export const getRenameInputVirtualDom = (): readonly VirtualDomNode[] => {
   return [
     {
+      childCount: 1,
+      className: ClassNames.RenameInputWrapper,
+      type: VirtualDomElements.Div,
+    },
+    {
       childCount: 0,
       className: MergeClassNames.mergeClassNames(ClassNames.InputBox, ClassNames.RenameInputBox),
       name: InputName.Rename,
