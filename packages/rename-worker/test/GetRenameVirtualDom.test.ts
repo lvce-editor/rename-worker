@@ -16,6 +16,11 @@ test('getRenameVirtualDom', () => {
       type: 4,
     },
     {
+      childCount: 1,
+      className: 'RenameInputWrapper',
+      type: 4,
+    },
+    {
       childCount: 0,
       className: 'InputBox RenameInputBox',
       name: 'Rename',
