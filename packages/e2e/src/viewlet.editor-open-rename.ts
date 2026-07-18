@@ -25,4 +25,5 @@ export const test: Test = async ({ Editor, expect, FileSystem, Locator, Main, Wo
   const renameInput = Locator('.RenameInputWrapper > .RenameInputBox')
   await expect(renameInput).toBeVisible()
   await expect(renameInput).toBeFocused()
+  await expect(renameInput).toHaveAttribute('autocomplete', 'off')
 }

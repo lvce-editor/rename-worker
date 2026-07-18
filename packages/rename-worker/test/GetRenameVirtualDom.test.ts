@@ -21,6 +21,7 @@ test('getRenameVirtualDom', () => {
       type: 4,
     },
     {
+      autocomplete: 'off',
       childCount: 0,
       className: 'InputBox RenameInputBox',
       name: 'Rename',
