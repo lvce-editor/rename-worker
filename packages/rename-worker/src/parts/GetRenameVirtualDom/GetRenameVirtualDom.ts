@@ -4,8 +4,9 @@ import { getRenameDefaultVirtualDom } from '../GetRenameDefaultVirtualDom/GetRen
 import { getRenameErrorVirtualDom } from '../GetRenameErrorVirtualDom/GetRenameErrorVirtualDom.ts'
 
 export const getRenameVirtualDom = (state: RenameState): readonly VirtualDomNode[] => {
-  if (state.errorMessage) {
-    return getRenameErrorVirtualDom(state.errorMessage)
+  const { errorMessage } = state
+  if (errorMessage) {
+    return getRenameErrorVirtualDom(errorMessage)
   }
   return getRenameDefaultVirtualDom(state)
 }
