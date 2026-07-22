@@ -5,13 +5,15 @@ import * as InputName from '../InputName/InputName.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+const renameInputWrapperNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.RenameInputWrapper,
+  type: VirtualDomElements.Div,
+}
+
 export const getRenameInputVirtualDom = (): readonly VirtualDomNode[] => {
   return [
-    {
-      childCount: 1,
-      className: ClassNames.RenameInputWrapper,
-      type: VirtualDomElements.Div,
-    },
+    renameInputWrapperNode,
     {
       autocomplete: 'off',
       childCount: 0,
