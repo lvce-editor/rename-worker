@@ -6,14 +6,12 @@ import * as GetRenameInputVirtualDom from '../GetRenameInputVirtualDom/GetRename
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+const renameDefaultNode: VirtualDomNode = {
+  childCount: 2,
+  className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
+  type: VirtualDomElements.Div,
+}
+
 export const getRenameDefaultVirtualDom = (state: RenameState): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 2,
-      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.EditorRename),
-      type: VirtualDomElements.Div,
-    },
-    ...GetRenameInputVirtualDom.getRenameInputVirtualDom(),
-    ...GetRenameDetailsVirtualDom.getRenameDetailsVirtualDom(),
-  ]
+  return [renameDefaultNode, ...GetRenameInputVirtualDom.getRenameInputVirtualDom(), ...GetRenameDetailsVirtualDom.getRenameDetailsVirtualDom()]
 }

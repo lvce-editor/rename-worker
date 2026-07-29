@@ -11,17 +11,16 @@ const renameInputWrapperNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
+const renameInputNode: VirtualDomNode = {
+  autocomplete: 'off',
+  childCount: 0,
+  className: MergeClassNames.mergeClassNames(ClassNames.InputBox, ClassNames.RenameInputBox),
+  name: InputName.Rename,
+  onBlur: DomEventListenerFunctions.HandleBlur,
+  onInput: DomEventListenerFunctions.HandleInput,
+  type: VirtualDomElements.Input,
+}
+
 export const getRenameInputVirtualDom = (): readonly VirtualDomNode[] => {
-  return [
-    renameInputWrapperNode,
-    {
-      autocomplete: 'off',
-      childCount: 0,
-      className: MergeClassNames.mergeClassNames(ClassNames.InputBox, ClassNames.RenameInputBox),
-      name: InputName.Rename,
-      onBlur: DomEventListenerFunctions.HandleBlur,
-      onInput: DomEventListenerFunctions.HandleInput,
-      type: VirtualDomElements.Input,
-    },
-  ]
+  return [renameInputWrapperNode, renameInputNode]
 }
