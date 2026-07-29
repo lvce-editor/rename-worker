@@ -34,6 +34,7 @@ test('loadContent - with word at cursor', async () => {
     ...state,
     focused: true,
     height: 80,
+    newValue: 'test',
     oldValue: 'test',
     selectionEnd: 4,
     version: 1,
