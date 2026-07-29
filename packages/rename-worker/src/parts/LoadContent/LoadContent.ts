@@ -21,6 +21,7 @@ export const loadContent = async (state: RenameState): Promise<RenameState> => {
     ...state,
     focused: true,
     height,
+    newValue: word,
     oldValue: word,
     selectionEnd,
     version: 1,
