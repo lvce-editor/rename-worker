@@ -7,6 +7,7 @@ import * as DiffType from '../DiffType/DiffType.ts'
 import * as DiffValue from '../DiffValue/DiffValue.ts'
 
 export const modules = [
+  DiffEventListeners.isEqual,
   DiffContent.isEqual,
   DiffBounds.isEqual,
   DiffFocus.isEqual,
@@ -17,10 +18,11 @@ export const modules = [
 ]
 
 export const numbers = [
+  DiffType.RenderEventListeners,
   DiffType.RenderContent,
   DiffType.RenderBounds,
   DiffType.RenderFocus,
-  DiffType.RenderEventListeners,
+  DiffType.RenderUid,
   DiffType.RenderValue,
   DiffType.RenderSelection,
   DiffType.RenderFocusContext,

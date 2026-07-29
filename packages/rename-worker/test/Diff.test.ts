@@ -1,5 +1,6 @@
 import { test, expect } from '@jest/globals'
 import * as Diff from '../src/parts/Diff/Diff.js'
+import * as DiffType from '../src/parts/DiffType/DiffType.js'
 
 const makeRenameState = (uid: number, overrides: any = {}): any => ({
   focused: false,
@@ -54,4 +55,14 @@ test('diff returns numbers when states have different selection', () => {
   const result = Diff.diff(oldState, newState)
   expect(Array.isArray(result)).toBe(true)
   expect(result.length).toBeGreaterThan(0)
+})
+
+test('diff renders event listeners before initial content', () => {
+  const oldState = makeRenameState(1, { version: 0 })
+  const newState = makeRenameState(1, { version: 1 })
+
+  const result = Diff.diff(oldState, newState)
+
+  expect(result.indexOf(DiffType.RenderEventListeners)).toBeLessThan(result.indexOf(DiffType.RenderContent))
+  expect(result.indexOf(DiffType.RenderContent)).toBeLessThan(result.indexOf(DiffType.RenderUid))
 })

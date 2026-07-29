@@ -6,6 +6,7 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as RenderFocus from '../RenderFocus/RenderFocus.ts'
 import * as RenderFocusContext from '../RenderFocusContext/RenderFocusContext.ts'
 import * as RenderSelection from '../RenderSelection/RenderSelection.ts'
+import * as RenderUid from '../RenderUid/RenderUid.ts'
 import * as RenderValue from '../RenderValue/RenderValue.ts'
 
 export const getRenderer = (diffType: number): Renderer => {
@@ -22,6 +23,8 @@ export const getRenderer = (diffType: number): Renderer => {
       return RenderFocusContext.renderFocusContext
     case DiffType.RenderSelection:
       return RenderSelection.renderSelection
+    case DiffType.RenderUid:
+      return RenderUid.renderUid
     case DiffType.RenderValue:
       return RenderValue.renderValue
     default:
