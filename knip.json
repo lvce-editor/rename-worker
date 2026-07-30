@@ -1,0 +1,31 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "project": ["*.js"]
+    },
+    "packages/build": {
+      "entry": ["src/build.ts", "src/build-static.ts", "src/computeNodeModulesCacheKey.ts", "src/dev.ts"],
+      "project": ["src/**/*.ts"],
+      "ignoreDependencies": ["@lvce-editor/shared-process"]
+    },
+    "packages/e2e": {
+      "entry": ["src/**/*.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/memory": {
+      "entry": ["src/measureMemory.ts"],
+      "project": ["src/**/*.ts"],
+      "ignoreDependencies": ["playwright"]
+    },
+    "packages/rename-worker": {
+      "entry": ["src/renameWorkerMain.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"]
+    },
+    "packages/server": {
+      "entry": ["src/postinstall.js"],
+      "project": ["src/**/*.js"],
+      "ignoreDependencies": ["@lvce-editor/server"]
+    }
+  }
+}
