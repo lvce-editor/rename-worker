@@ -1,9 +1,11 @@
+import { activate, registerRenameProvider } from '@lvce-editor/api'
+
 const renameProvider = {
+  id: 'rename-type-error',
   languageId: 'rename-type-error',
   provideRename(textDocument, offset) {
     throw new TypeError('x is not a function')
   },
 }
-export const activate = () => {
-  vscode.registerRenameProvider(renameProvider)
-}
+await activate()
+registerRenameProvider(renameProvider)

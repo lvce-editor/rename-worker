@@ -1,5 +1,6 @@
 {
-  "browser": "main.js",
+  "browser": "dist/main.js",
+  "isolated": true,
   "activation": ["onRename:rename-apply-invalid-inserted-text"],
   "languages": [{ "id": "rename-apply-invalid-inserted-text", "extensions": [".rename-apply-invalid-inserted-text"] }],
   "id": "sample.rename-provider-apply-invalid-inserted-text"

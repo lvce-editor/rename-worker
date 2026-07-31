@@ -1,5 +1,6 @@
 {
-  "browser": "main.js",
+  "browser": "dist/main.js",
+  "isolated": true,
   "activation": ["onRename:rename-invalid-return-value-undefined"],
   "languages": [{ "id": "rename-invalid-return-value-undefined", "extensions": [".rename-invalid-return-value-undefined"] }],
   "id": "sample.rename-provider-invalid-return-value-undefined"

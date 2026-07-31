@@ -1,5 +1,6 @@
 {
-  "browser": "main.js",
+  "browser": "dist/main.js",
+  "isolated": true,
   "activation": ["onRename:rename-apply-invalid-offset"],
   "languages": [{ "id": "rename-apply-invalid-offset", "extensions": [".rename-apply-invalid-offset"] }],
   "id": "sample.rename-provider-apply-invalid-offset"

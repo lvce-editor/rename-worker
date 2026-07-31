@@ -20,9 +20,7 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Editor.rename2('y')
 
   // assert
-  const viewlet = Locator('.Viewlet.EditorRename', {
-    hasText: `VError: Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array`,
-  })
+  const viewlet = Locator('.Viewlet.EditorRename')
   await expect(viewlet).toBeVisible()
   await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array`)
 }

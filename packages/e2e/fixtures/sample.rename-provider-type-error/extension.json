@@ -1,5 +1,6 @@
 {
-  "browser": "main.js",
+  "browser": "dist/main.js",
+  "isolated": true,
   "activation": ["onRename:rename-type-error"],
   "languages": [{ "id": "rename-type-error", "extensions": [".rename-type-error"] }],
   "id": "sample.rename-provider-type-error"

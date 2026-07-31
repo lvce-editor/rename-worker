@@ -1,4 +1,7 @@
+import { activate, registerRenameProvider } from '@lvce-editor/api'
+
 const renameProvider = {
+  id: 'rename-provider',
   languageId: 'rename-provider',
   provideRename(textDocument, offset, newName) {
     // TODO compute rename
@@ -19,6 +22,5 @@ const renameProvider = {
     }
   },
 }
-export const activate = () => {
-  vscode.registerRenameProvider(renameProvider)
-}
+await activate()
+registerRenameProvider(renameProvider)
