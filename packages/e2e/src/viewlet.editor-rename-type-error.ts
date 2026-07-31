@@ -20,7 +20,7 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Editor.rename2('y')
 
   // assert
-  const viewlet = Locator('.Viewlet.EditorRename', { hasText: `VError: Failed to execute rename provider: TypeError: x is not a function` })
+  const viewlet = Locator('.Viewlet.EditorRename', { hasText: `VError: Failed to execute rename provider: x is not a function` })
   await expect(viewlet).toBeVisible()
-  await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: TypeError: x is not a function`)
+  await expect(viewlet).toHaveText(`VError: Failed to execute rename provider: x is not a function`)
 }

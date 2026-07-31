@@ -10,8 +10,8 @@
       "ignoreDependencies": ["@lvce-editor/shared-process"]
     },
     "packages/e2e": {
-      "entry": ["src/**/*.ts"],
-      "project": ["src/**/*.ts"]
+      "entry": ["src/**/*.ts", "fixtures/*/main.js"],
+      "project": ["src/**/*.ts", "fixtures/*/main.js"]
     },
     "packages/memory": {
       "entry": ["src/measureMemory.ts"],

@@ -1,4 +1,7 @@
+import { activate, registerRenameProvider } from '@lvce-editor/api'
+
 const renameProvider = {
+  id: 'rename-apply-invalid-inserted-text',
   languageId: 'rename-apply-invalid-inserted-text',
   provideRename(textDocument, offset, newName) {
     return {
@@ -18,6 +21,5 @@ const renameProvider = {
     }
   },
 }
-export const activate = () => {
-  vscode.registerRenameProvider(renameProvider)
-}
+await activate()
+registerRenameProvider(renameProvider)

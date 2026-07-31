@@ -1,5 +1,6 @@
 {
-  "browser": "main.js",
+  "browser": "dist/main.js",
+  "isolated": true,
   "activation": ["onRename:rename-invalid-return-value-missing-edits"],
   "languages": [{ "id": "rename-invalid-return-value-missing-edits", "extensions": [".rename-invalid-return-value-missing-edits"] }],
   "id": "sample.rename-provider-invalid-return-value-missing-edits"
