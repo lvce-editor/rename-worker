@@ -5,6 +5,11 @@ export default defineConfig([
   ...config.default,
   ...config.recommendedVirtualDom,
   {
+    // The application runner supplies the shared test context.
+    files: ['packages/e2e-integration/src/**/*.ts'],
+    rules: { '@typescript-eslint/prefer-readonly-parameter-types': 'off' },
+  },
+  {
     rules: {
       '@typescript-eslint/only-throw-error': 'off',
       'jest/no-disabled-tests': 'off',
