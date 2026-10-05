@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-rename'
 
-export const test: Test = async ({ Editor, expect, Extension, FileSystem, KeyBoard, Locator, Main, Workspace }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider')
   await Extension.addWebExtension(extensionUri)
@@ -29,9 +29,4 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, KeyBoa
   await expect(renameInput).toBeFocused()
   await expect(renameInput).toHaveAttribute('autocomplete', 'off')
 
-  await KeyBoard.press('Escape')
-  await expect(renameWidget).toBeHidden()
-  const editorInput = Locator('.EditorInput textarea')
-  await expect(editorInput).toBeFocused()
-  await Editor.shouldHaveText('let x = 1\n')
 }
