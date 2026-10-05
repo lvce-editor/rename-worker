@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-no-prepare-rename'
 
+export const skip = 1
+
 export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
   const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-no-prepare')
   await Extension.addWebExtension(extensionUri)

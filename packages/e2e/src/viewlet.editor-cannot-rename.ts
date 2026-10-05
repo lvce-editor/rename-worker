@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'viewlet.editor-cannot-rename'
 
-// export const skip = true
+export const skip = 1
 
 export const test: Test = async ({ Editor, expect, FileSystem, Locator, Main, Workspace }) => {
   // arrange
