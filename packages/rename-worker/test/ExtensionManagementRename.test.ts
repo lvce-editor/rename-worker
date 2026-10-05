@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { EditorWorker, ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
-import { executePrepareRenameProvider, executeRenameProvider } from '../src/parts/ExtensionManagementRename/ExtensionManagementRename.ts'
+import { executeRenameProvider } from '../src/parts/ExtensionManagementRename/ExtensionManagementRename.ts'
 
 test('executeRenameProvider calls the isolated rename provider through extension management', async () => {
   using editorRpc = EditorWorker.registerMockRpc({
@@ -79,7 +79,7 @@ test('executePrepareRenameProvider calls the preparation provider through extens
     'Extensions.executeLanguageProvider': () => ({ found: true, result: preparation }),
   })
 
-  await expect(executePrepareRenameProvider(12, 'rename-test', 8)).resolves.toBe(preparation)
+  await expect(executeRenameProvider(12, 'rename-test', 8, undefined)).resolves.toBe(preparation)
   expect(editorRpc.invocations).toEqual([
     ['Editor.getText', 12],
     ['Editor.getUri', 12],
@@ -109,5 +109,5 @@ test('executePrepareRenameProvider returns undefined when no provider supports p
     'Extensions.executeLanguageProvider': () => ({ found: false }),
   })
 
-  await expect(executePrepareRenameProvider(1, 'plaintext', 0)).resolves.toBeUndefined()
+  await expect(executeRenameProvider(1, 'plaintext', 0, undefined)).resolves.toBeUndefined()
 })

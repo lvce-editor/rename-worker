@@ -24,7 +24,7 @@ export const commandMap = {
   'Rename.handleInput': RenameStates.wrapCommand(HandleInput.handleInput),
   'Rename.initialize': Initialize.initialize,
   'Rename.loadContent': RenameStates.wrapCommand(LoadContent.loadContent),
-  'Rename.prepareRename': ExtensionManagementRename.executePrepareRenameProvider,
+  'Rename.prepareRename': ExtensionManagementRename.executeRenameProvider,
   'Rename.render2': Render2.render2,
   'Rename.terminate': terminate,
 }

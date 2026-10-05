@@ -32,7 +32,13 @@ const validateResult = (renameResult: any): string => {
   return ''
 }
 
-export const executeRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number, newName: string): Promise<any> => {
+export const executeRenameProvider = async (
+  editorUid: number,
+  editorLanguageId: string,
+  offset: number,
+  newName: string | undefined,
+): Promise<any> => {
+  const prepareRename = newName === undefined
   const [text, uri] = await Promise.all([EditorWorker.invoke('Editor.getText', editorUid), EditorWorker.invoke('Editor.getUri', editorUid)])
   const textDocument = {
     documentId: editorUid,
@@ -44,13 +50,16 @@ export const executeRenameProvider = async (editorUid: number, editorLanguageId:
     const result = await ExtensionManagementWorker.invoke(
       'Extensions.executeLanguageProvider',
       'rename',
-      'provideRename',
+      prepareRename ? 'prepareRename' : 'provideRename',
       textDocument,
       offset,
       newName,
     )
     if (!result.found) {
-      return { edits: [] }
+      return prepareRename ? undefined : { edits: [] }
+    }
+    if (prepareRename) {
+      return result.result
     }
     const renameResult = result.result ?? null
     const validationError = validateResult(renameResult)
@@ -61,19 +70,4 @@ export const executeRenameProvider = async (editorUid: number, editorLanguageId:
   } catch (error) {
     throw new VError(error, 'Failed to execute rename provider')
   }
-}
-
-export const executePrepareRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number): Promise<any> => {
-  const [text, uri] = await Promise.all([EditorWorker.invoke('Editor.getText', editorUid), EditorWorker.invoke('Editor.getUri', editorUid)])
-  const textDocument = {
-    documentId: editorUid,
-    languageId: editorLanguageId,
-    text,
-    uri,
-  }
-  const result = await ExtensionManagementWorker.invoke('Extensions.executeLanguageProvider', 'rename', 'prepareRename', textDocument, offset)
-  if (!result.found) {
-    return undefined
-  }
-  return result.result
 }
