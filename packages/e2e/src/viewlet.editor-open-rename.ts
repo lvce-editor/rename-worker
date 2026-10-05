@@ -28,5 +28,4 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await expect(renameInput).toBeVisible()
   await expect(renameInput).toBeFocused()
   await expect(renameInput).toHaveAttribute('autocomplete', 'off')
-
 }
