@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { EditorWorker, ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
-import { executeRenameProvider } from '../src/parts/ExtensionManagementRename/ExtensionManagementRename.ts'
+import { executePrepareRenameProvider, executeRenameProvider } from '../src/parts/ExtensionManagementRename/ExtensionManagementRename.ts'
 
 test('executeRenameProvider calls the isolated rename provider through extension management', async () => {
   using editorRpc = EditorWorker.registerMockRpc({
@@ -67,4 +67,47 @@ test('executeRenameProvider validates isolated provider results', async () => {
   await expect(executeRenameProvider(1, 'rename-test', 4, 'y')).rejects.toThrow(
     'Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array',
   )
+})
+
+test('executePrepareRenameProvider calls the preparation provider through extension management', async () => {
+  using editorRpc = EditorWorker.registerMockRpc({
+    'Editor.getText': () => 'const alpha = 1',
+    'Editor.getUri': () => 'file:///test.rename-test',
+  })
+  const preparation = { placeholder: 'alpha', range: { end: 11, start: 6 } }
+  using extensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.executeLanguageProvider': () => ({ found: true, result: preparation }),
+  })
+
+  await expect(executePrepareRenameProvider(12, 'rename-test', 8)).resolves.toBe(preparation)
+  expect(editorRpc.invocations).toEqual([
+    ['Editor.getText', 12],
+    ['Editor.getUri', 12],
+  ])
+  expect(extensionManagementRpc.invocations).toEqual([
+    [
+      'Extensions.executeLanguageProvider',
+      'rename',
+      'prepareRename',
+      {
+        documentId: 12,
+        languageId: 'rename-test',
+        text: 'const alpha = 1',
+        uri: 'file:///test.rename-test',
+      },
+      8,
+    ],
+  ])
+})
+
+test('executePrepareRenameProvider returns undefined when no provider supports preparation', async () => {
+  using _editorRpc = EditorWorker.registerMockRpc({
+    'Editor.getText': () => '',
+    'Editor.getUri': () => 'file:///test.txt',
+  })
+  using _extensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.executeLanguageProvider': () => ({ found: false }),
+  })
+
+  await expect(executePrepareRenameProvider(1, 'plaintext', 0)).resolves.toBeUndefined()
 })

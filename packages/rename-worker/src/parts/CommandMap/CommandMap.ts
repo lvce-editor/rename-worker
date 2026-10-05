@@ -4,6 +4,7 @@ import * as Close from '../Close/Close.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
+import * as ExtensionManagementRename from '../ExtensionManagementRename/ExtensionManagementRename.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as HandleBlur from '../HandleBlur/HandleBlur.ts'
 import * as HandleInput from '../HandleInput/HandleInput.ts'
@@ -23,6 +24,7 @@ export const commandMap = {
   'Rename.handleInput': RenameStates.wrapCommand(HandleInput.handleInput),
   'Rename.initialize': Initialize.initialize,
   'Rename.loadContent': RenameStates.wrapCommand(LoadContent.loadContent),
+  'Rename.prepareRename': ExtensionManagementRename.executePrepareRenameProvider,
   'Rename.render2': Render2.render2,
   'Rename.terminate': terminate,
 }

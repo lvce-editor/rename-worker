@@ -3,6 +3,9 @@ import { activate, registerRenameProvider } from '@lvce-editor/api'
 const renameProvider = {
   id: 'rename-provider',
   languageId: 'rename-provider',
+  prepareRename(textDocument, offset) {
+    return { offset, uri: textDocument.uri }
+  },
   provideRename(textDocument, offset, newName) {
     // TODO compute rename
     return {

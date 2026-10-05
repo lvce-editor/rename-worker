@@ -62,3 +62,18 @@ export const executeRenameProvider = async (editorUid: number, editorLanguageId:
     throw new VError(error, 'Failed to execute rename provider')
   }
 }
+
+export const executePrepareRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number): Promise<any> => {
+  const [text, uri] = await Promise.all([EditorWorker.invoke('Editor.getText', editorUid), EditorWorker.invoke('Editor.getUri', editorUid)])
+  const textDocument = {
+    documentId: editorUid,
+    languageId: editorLanguageId,
+    text,
+    uri,
+  }
+  const result = await ExtensionManagementWorker.invoke('Extensions.executeLanguageProvider', 'rename', 'prepareRename', textDocument, offset)
+  if (!result.found) {
+    return undefined
+  }
+  return result.result
+}

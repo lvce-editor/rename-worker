@@ -1,25 +1,19 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'viewlet.editor-cannot-rename'
+export const name = 'viewlet.editor-no-prepare-rename'
 
-// export const skip = true
-
-export const test: Test = async ({ Editor, expect, FileSystem, Locator, Main, Workspace }) => {
-  // arrange
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
+  const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider-no-prepare')
+  await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
-  await FileSystem.writeFile(
-    `${tmpDir}/file.txt`,
-    `let x = 1
-`,
-  )
+  const uri = `${tmpDir}/file.rename-provider-no-prepare`
+  await FileSystem.writeFile(uri, 'let x = 1\n')
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.txt`)
+  await Main.openUri(uri)
   await Editor.setCursor(0, 5)
 
-  // act
   await Editor.openRename()
 
-  // assert
   const renameWidget = Locator('.EditorRename')
   const editorInput = Locator('.EditorInput textarea')
   const renameDecoration = Locator('.Token.R')
