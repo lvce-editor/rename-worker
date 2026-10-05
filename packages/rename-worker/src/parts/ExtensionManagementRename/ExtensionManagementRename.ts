@@ -55,11 +55,8 @@ export const executeRenameProvider = async (
       offset,
       newName,
     )
-    if (!result.found) {
-      return prepareRename ? undefined : { edits: [] }
-    }
-    if (prepareRename) {
-      return result.result
+    if (!result.found || prepareRename) {
+      return prepareRename ? result.result : { edits: [] }
     }
     const renameResult = result.result ?? null
     const validationError = validateResult(renameResult)
