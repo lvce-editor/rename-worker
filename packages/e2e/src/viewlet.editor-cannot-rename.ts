@@ -4,16 +4,18 @@ export const name = 'viewlet.editor-cannot-rename'
 
 // export const skip = true
 
-export const test: Test = async ({ Editor, expect, FileSystem, Locator, Main, Workspace }) => {
+export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locator, Main, Workspace }) => {
   // arrange
+  const extensionUri = import.meta.resolve('../fixtures/sample.rename-provider')
+  await Extension.addWebExtension(extensionUri)
   const tmpDir = await FileSystem.getTmpDir()
   await FileSystem.writeFile(
-    `${tmpDir}/file.js`,
+    `${tmpDir}/file.rename-provider`,
     `let x = 1
 `,
   )
   await Workspace.setPath(tmpDir)
-  await Main.openUri(`${tmpDir}/file.js`)
+  await Main.openUri(`${tmpDir}/file.rename-provider`)
   await Editor.setCursor(0, 5)
 
   // act
