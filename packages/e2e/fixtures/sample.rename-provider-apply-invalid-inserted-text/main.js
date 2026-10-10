@@ -3,6 +3,9 @@ import { activate, registerRenameProvider } from '@lvce-editor/api'
 const renameProvider = {
   id: 'rename-apply-invalid-inserted-text',
   languageId: 'rename-apply-invalid-inserted-text',
+  prepareRename() {
+    return {}
+  },
   provideRename(textDocument, offset, newName) {
     return {
       canRename: true,

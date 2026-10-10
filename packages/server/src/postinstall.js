@@ -28,18 +28,25 @@ const isCommitHash = (dirent) => {
 
 const dirents = await readdir(serverStaticPath)
 const commitHash = dirents.find(isCommitHash) || ''
-const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
-
-const content = await readFile(rendererWorkerMainPath, 'utf-8')
-
+const rendererWorkerDistPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist')
 const remoteUrl = getRemoteUrl(workerPath)
-if (!content.includes('// const renameWorkerUrl = ')) {
-  const occurrence = `const renameWorkerUrl = \`\${assetDir}/packages/rename-worker/dist/renameWorkerMain.js\``
-  const replacement = `// const renameWorkerUrl = \`\${assetDir}/packages/rename-worker/dist/renameWorkerMain.js\`
-const renameWorkerUrl = \`${remoteUrl}\``
-
-  const newContent = content.replace(occurrence, replacement)
-  await writeFile(rendererWorkerMainPath, newContent)
+const rendererFiles = await readdir(rendererWorkerDistPath)
+let found = false
+for (const file of rendererFiles) {
+  if (!file.endsWith('.js')) {
+    continue
+  }
+  const filePath = join(rendererWorkerDistPath, file)
+  const content = await readFile(filePath, 'utf-8')
+  if (!content.includes('const renameWorkerUrl = ')) {
+    continue
+  }
+  const newContent = content.replace(/^const renameWorkerUrl = .*$/m, `const renameWorkerUrl = ${JSON.stringify(remoteUrl)};`)
+  await writeFile(filePath, newContent)
+  found = true
+}
+if (!found) {
+  throw new Error('Rename worker URL not found in renderer chunks')
 }
 
 await cp(staticServerConfigPath, sharedProcessConfigPath)
