@@ -6,10 +6,10 @@ import * as GetOffsetAtCursor from '../GetOffsetAtCursor/GetOffsetAtCursor.ts'
 import * as Logger from '../Logger/Logger.ts'
 
 export const accept = async (state: RenameState): Promise<RenameState> => {
-  const { editorLanguageId, newValue, parentUid } = state
+  const { applicationId, editorLanguageId, newValue, parentUid } = state
   const offset = await GetOffsetAtCursor.getOffsetAtCursor(parentUid)
   try {
-    const result = await ExtensionManagementRename.executeRenameProvider(parentUid, editorLanguageId, offset, newValue)
+    const result = await ExtensionManagementRename.executeRenameProvider(parentUid, editorLanguageId, offset, newValue, applicationId)
     await ApplyWorkspaceEdit.applyWorkspaceEdit(parentUid, result.edits)
     return close(state)
   } catch (error) {

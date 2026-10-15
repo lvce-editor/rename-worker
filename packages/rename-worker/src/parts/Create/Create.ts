@@ -10,9 +10,11 @@ export const create = (
   height: number,
   parentUid: number,
   editorLanguageId: string,
+  applicationId?: string,
 ): RenameState => {
   Assert.number(uid)
   const state: RenameState = {
+    ...(applicationId !== undefined && { applicationId }),
     editorLanguageId,
     errorMessage: '',
     focused: false,

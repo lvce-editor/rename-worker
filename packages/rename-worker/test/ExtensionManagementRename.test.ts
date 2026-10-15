@@ -68,3 +68,27 @@ test('executeRenameProvider validates isolated provider results', async () => {
     'Failed to execute rename provider: invalid rename result: renameResult item edits must be of type array',
   )
 })
+
+test('application rename requests retain the owner of the editor being renamed', async () => {
+  using _editor = EditorWorker.registerMockRpc({
+    'Editor.getText': () => 'let color = blue',
+    'Editor.getUri': () => 'memfs:///example.txt',
+  })
+  const renamed = { canRename: true, edits: [] }
+  using management = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.invokeForApplication': () => ({ found: true, result: renamed }),
+  })
+  await expect(executeRenameProvider(12, 'plaintext', 5, 'shade', 'preview')).resolves.toBe(renamed)
+  expect(management.invocations).toEqual([
+    [
+      'Extensions.invokeForApplication',
+      'preview',
+      'Extensions.executeLanguageProvider',
+      'rename',
+      'provideRename',
+      { documentId: 12, languageId: 'plaintext', text: 'let color = blue', uri: 'memfs:///example.txt' },
+      5,
+      'shade',
+    ],
+  ])
+})
