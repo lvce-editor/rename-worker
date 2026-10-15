@@ -32,7 +32,13 @@ const validateResult = (renameResult: any): string => {
   return ''
 }
 
-export const executeRenameProvider = async (editorUid: number, editorLanguageId: string, offset: number, newName: string): Promise<any> => {
+export const executeRenameProvider = async (
+  editorUid: number,
+  editorLanguageId: string,
+  offset: number,
+  newName: string,
+  applicationId?: string,
+): Promise<any> => {
   const [text, uri] = await Promise.all([EditorWorker.invoke('Editor.getText', editorUid), EditorWorker.invoke('Editor.getUri', editorUid)])
   const textDocument = {
     documentId: editorUid,
@@ -41,14 +47,11 @@ export const executeRenameProvider = async (editorUid: number, editorLanguageId:
     uri,
   }
   try {
-    const result = await ExtensionManagementWorker.invoke(
-      'Extensions.executeLanguageProvider',
-      'rename',
-      'provideRename',
-      textDocument,
-      offset,
-      newName,
-    )
+    const args = ['rename', 'provideRename', textDocument, offset, newName] as const
+    const result =
+      applicationId === undefined
+        ? await ExtensionManagementWorker.invoke('Extensions.executeLanguageProvider', ...args)
+        : await ExtensionManagementWorker.invoke('Extensions.invokeForApplication', applicationId, 'Extensions.executeLanguageProvider', ...args)
     if (!result.found) {
       return { edits: [] }
     }

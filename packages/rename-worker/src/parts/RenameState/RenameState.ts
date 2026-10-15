@@ -1,4 +1,5 @@
 export interface RenameState {
+  readonly applicationId?: string
   readonly editorLanguageId: string
   readonly errorMessage: string
   readonly focused: boolean
